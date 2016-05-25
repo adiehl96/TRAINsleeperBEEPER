@@ -49,7 +49,7 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 98;
     public GoogleApiClient mGoogleApiClient;
-    TextView lattest;
+    TextView lattest,message;
     double lat, lng;
     LatLng destination;
     Location mCurrentLocation;
@@ -71,6 +71,7 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
 
 
         lattest = (TextView) this.findViewById(R.id.textView);
+        message = (TextView) this.findViewById(R.id.textView2);
 
 
         if (mGoogleApiClient == null) {
@@ -108,6 +109,7 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
+
         checkpermission();
         if (mLastLocation != null) {
             mCurrentLocation.setLatitude(mLastLocation.getLatitude());
@@ -115,8 +117,15 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
         }
 
         calcdist();
+
         lattest.setText(distance + "");
-        startLocationUpdates();
+        if(distance < 60.0) {
+            message.setText( "You're there");
+        }
+        else{
+            message.setText("Not yet there");
+            startLocationUpdates();
+        }
 
     }
 
@@ -150,7 +159,7 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
 
         double meterConversion = 1609.0;
 
-        distance = (dist * meterConversion) / 1000;
+        distance = (dist * meterConversion);
     }
 
     public void checkpermission() {
@@ -200,5 +209,13 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
     private void updateAndCheck(){
         calcdist();
         lattest.setText(distance + "");
+        if(distance < 60.0) {
+            message.setText( "You're there");
+
+        }
+        else{
+            message.setText("Not yet there");
+
+        }
     }
 }
