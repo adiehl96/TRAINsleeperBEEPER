@@ -9,9 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.maps.GoogleMap;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -40,26 +45,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.text.BreakIterator;
 
 
-public class alarm extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class alarm extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener  {
+
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 98;
     public GoogleApiClient mGoogleApiClient;
-
     TextView lattest;
-    double lat,lng;
+    double lat, lng;
     LatLng destination;
-    LatLng start;
+    Location mCurrentLocation;
     double distance;
     Location mLastLocation;
-    BreakIterator mLatitudeText;
-    BreakIterator mLongitudeText;
+    LocationRequest mLocationRequest;
 
-
-    protected void createLocationRequest() {
-        LocationRequest mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);
-        mLocationRequest.setFastestInterval(5000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,45 +64,59 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
         setContentView(R.layout.alarm);
 
         Intent intent = getIntent();
-        lat = intent.getDoubleExtra("Latit",-1);
-        lng = intent.getDoubleExtra("Longit",-1);
-        destination = new LatLng(lat,lng);
+        lat = intent.getDoubleExtra("Latit", -1);
+        lng = intent.getDoubleExtra("Longit", -1);
+        destination = new LatLng(lat, lng);
+        mCurrentLocation = new Location("current");
 
-        lattest = (TextView)this.findViewById(R.id.textView);
-        lattest.setText(lat+"");
 
-        if (mGoogleApiClient == null){
-                mGoogleApiClient = new GoogleApiClient.Builder(this)
-                        .addConnectionCallbacks((GoogleApiClient.ConnectionCallbacks) this)
-                        .addOnConnectionFailedListener((GoogleApiClient.OnConnectionFailedListener) this)
-                        .addApi(LocationServices.API)
-                        .build();
-            }
+        lattest = (TextView) this.findViewById(R.id.textView);
 
-        calcdist();
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks((GoogleApiClient.ConnectionCallbacks) this)
+                    .addOnConnectionFailedListener((GoogleApiClient.OnConnectionFailedListener) this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+        mLocationRequest = new LocationRequest();
+        createLocationRequest();
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest);
+
+        //PendingResult<LocationSettingsResult> result =
+                //LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient,
+                  //      builder.build());
+
+
+
 
     }
 
     @Override
     protected void onStart() {
-        //mGoogleApiClient.connect();
         super.onStart();
+        mGoogleApiClient.connect();
     }
 
     protected void onStop() {
-        mGoogleApiClient.disconnect();
         super.onStop();
+        mGoogleApiClient.disconnect();
     }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
-        checkpermission(mLastLocation);
+        checkpermission();
         if (mLastLocation != null) {
-
-            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+            mCurrentLocation.setLatitude(mLastLocation.getLatitude());
+            mCurrentLocation.setLongitude(mLastLocation.getLongitude());
         }
+
+        calcdist();
+        lattest.setText(distance + "");
+        startLocationUpdates();
 
     }
 
@@ -119,40 +130,75 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
 
     }
 
-    public void calcdist(){
+    public void calcdist() {
 
 
-            double earthRadius = 3958.75;
+        double earthRadius = 3958.75;
 
-            double dLat = Math.toRadians(destination.latitude - start.latitude);
+        double dLat = Math.toRadians(destination.latitude - mCurrentLocation.getLatitude());
 
-            double dLng = Math.toRadians(destination.longitude - start.longitude);
+        double dLng = Math.toRadians(destination.longitude - mCurrentLocation.getLongitude());
 
-            double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
-                    + Math.cos(Math.toRadians(start.latitude))
-                    * Math.cos(Math.toRadians(destination.latitude)) * Math.sin(dLng / 2)
-                    * Math.sin(dLng / 2);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(mCurrentLocation.getLatitude()))
+                * Math.cos(Math.toRadians(destination.latitude)) * Math.sin(dLng / 2)
+                * Math.sin(dLng / 2);
 
-            double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-            double dist = earthRadius * c;
+        double dist = earthRadius * c;
 
-            double meterConversion = 1609.0;
+        double meterConversion = 1609.0;
 
-        distance = (dist * meterConversion);
+        distance = (dist * meterConversion) / 1000;
     }
 
-    public void checkpermission(Location loco) {
+    public void checkpermission() {
 
-        if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
-            loco = LocationServices.FusedLocationApi.getLastLocation(
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
-        }
-        else {
+        } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSIONS_REQUEST_LOCATION);
 
         }
+    }
+
+
+    protected void createLocationRequest() {
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+
+    }
+
+    protected void startLocationUpdates() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, (LocationListener) this);
+
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_LOCATION);
+
+        }
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        mCurrentLocation = location;
+        updateAndCheck();
+
+    }
+
+    private void updateAndCheck(){
+        calcdist();
+        lattest.setText(distance + "");
     }
 }
