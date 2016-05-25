@@ -16,10 +16,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|top"
-        android:text="Demo Button"
-        android:id="@+id/dembutton"
-        android:padding="10dp"
-        android:layout_marginTop="20dp"
-        android:paddingRight="10dp"/>
+        android:text="New Button"
+        android:id="@+id/button2"
+        android:layout_gravity="right|center_vertical"
+        />
 </FrameLayout>

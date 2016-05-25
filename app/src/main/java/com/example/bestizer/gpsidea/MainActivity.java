@@ -12,30 +12,26 @@ import com.google.android.gms.maps.model.LatLng;
 public class MainActivity extends AppCompatActivity {
 
     Button setPos;
-    EditText Latitude, Longitude;
-    int Lat,Long;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setPos = (Button)this.findViewById(R.id.button);
-        Latitude = (EditText)this.findViewById(R.id.latit);
-        Longitude = (EditText)this.findViewById(R.id.longit);
+        setPos = (Button) this.findViewById(R.id.button);
 
-        setPos.setOnClickListener(new Button.OnClickListener(){
-            public void onClick (View v){
-                Lat = Integer.parseInt(Latitude.getText().toString());
-                Long = Integer.parseInt(Longitude.getText().toString());
-                LatLng Pos = new LatLng(Lat,Long);
+
+        setPos.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+
                 Intent i = new Intent(MainActivity.this, MapsActivity.class);
-                i.putExtra("Latit",Lat);
-                i.putExtra("Longit",Long);
+                i.putExtra("Latit", 52);
+                i.putExtra("Longit", 5);
                 startActivity(i);
 
             }
         });
 
-        System.out.println(""+Lat);
     }
+
 }

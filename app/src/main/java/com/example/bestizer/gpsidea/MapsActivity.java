@@ -20,13 +20,15 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.BreakIterator;
+import java.util.ArrayList;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MapsActivity extends FragmentActivity implements  OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
@@ -34,13 +36,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     BreakIterator mLatitudeText;
     BreakIterator mLongitudeText;
     Button getPos;
+    double latitude,longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getPos = (Button)this.findViewById(R.id.dembutton);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        //put buttons after setcontentview
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -55,11 +58,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .build();
         }
 
-        getPos.setOnClickListener(new Button.OnClickListener(){
-            public void onClick(android.view.View v) {
-                
+        getPos = (Button)this.findViewById(R.id.button2);
+        getPos.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(MapsActivity.this,alarm.class);
+                i.putExtra("Latit", latitude);
+                i.putExtra("Longit", longitude);
+
+                startActivity(i);
             }
         });
+
+
+
+
 
     }
 
@@ -118,20 +130,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         checkpermission(mMap);
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(lat,Longit);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng custom = new LatLng(lat,Longit);
+
+        mMap.addMarker(new MarkerOptions().position(custom).title("Marker in custom city"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(custom));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng point) {
+                // TODO Auto-generated method stub
+                //lstLatLngs.add(point);
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions().position(point));
+                latitude = point.latitude;
+                longitude= point.longitude;
+            }
+        });
 
     }
 
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-         checkpermission(mLastLocation);
+         //checkpermission(mLastLocation);
         if (mLastLocation != null) {
 
             mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
             mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
         }
+
+
 
 
     }
@@ -145,4 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+
+
 }
