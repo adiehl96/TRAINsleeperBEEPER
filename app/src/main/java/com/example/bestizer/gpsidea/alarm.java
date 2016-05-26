@@ -1,5 +1,7 @@
 package com.example.bestizer.gpsidea;
 
+import model.NamedLocation;
+import model.AlarmLocation;
 import android.*;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -49,19 +51,26 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 98;
     public GoogleApiClient mGoogleApiClient;
-    TextView lattest,message;
+    TextView lattest,message,rad;
     double lat, lng;
     LatLng destination;
     Location mCurrentLocation;
     double distance;
+    double radius;
+    String source;
     Location mLastLocation;
     LocationRequest mLocationRequest;
+    NamedLocation test;
+    AlarmLocation tset;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm);
+
+        //test = new NamedLocation("aasdasd");
+        //tset = new AlarmLocation(test,50.0);
 
         Intent intent = getIntent();
         lat = intent.getDoubleExtra("Latit", -1);
@@ -70,8 +79,9 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
         mCurrentLocation = new Location("current");
 
 
-        lattest = (TextView) this.findViewById(R.id.textView);
-        message = (TextView) this.findViewById(R.id.textView2);
+        //lattest = (TextView) this.findViewById(R.id.textView);
+        //message = (TextView) this.findViewById(R.id.textView2);
+        //rad     = (TextView) this.findViewById(R.id.textView3);
 
 
         if (mGoogleApiClient == null) {
@@ -91,6 +101,7 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
                   //      builder.build());
 
 
+        rad.setText(""+source);
 
 
     }
