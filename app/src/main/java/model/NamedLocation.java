@@ -13,5 +13,11 @@ public class NamedLocation extends Location {
         super("");
         this.name = name;
     }
+    public NamedLocation(Location location, String name){
+        super(location);
+        this.name=name;
+    }
+
+
 
 }

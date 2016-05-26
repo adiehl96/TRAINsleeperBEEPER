@@ -8,8 +8,8 @@ public class AlarmLocation extends NamedLocation{
 
     public double radius;
 
-    public AlarmLocation(NamedLocation nl, double radius) {
-        super(nl.name);
+    public AlarmLocation(NamedLocation NamedLocation, double radius) {
+        super(NamedLocation,NamedLocation.name);
         this.radius=radius;
     }
 }

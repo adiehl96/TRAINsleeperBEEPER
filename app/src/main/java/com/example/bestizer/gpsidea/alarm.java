@@ -60,8 +60,9 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
     String source;
     Location mLastLocation;
     LocationRequest mLocationRequest;
-    NamedLocation test;
-    AlarmLocation tset;
+    //NamedLocation test;
+    //AlarmLocation tset;
+    //Location testing;
 
 
     @Override
@@ -70,7 +71,10 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
         setContentView(R.layout.alarm);
 
         //test = new NamedLocation("aasdasd");
+        //test.setLatitude(50.0);
+        //test.setLongitude(50.0);
         //tset = new AlarmLocation(test,50.0);
+        //testing = new Location(tset);
 
         Intent intent = getIntent();
         lat = intent.getDoubleExtra("Latit", -1);
@@ -79,9 +83,9 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
         mCurrentLocation = new Location("current");
 
 
-        //lattest = (TextView) this.findViewById(R.id.textView);
-        //message = (TextView) this.findViewById(R.id.textView2);
-        //rad     = (TextView) this.findViewById(R.id.textView3);
+        lattest = (TextView) this.findViewById(R.id.textView);
+        message = (TextView) this.findViewById(R.id.textView2);
+        rad     = (TextView) this.findViewById(R.id.textView3);
 
 
         if (mGoogleApiClient == null) {
@@ -101,7 +105,7 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
                   //      builder.build());
 
 
-        rad.setText(""+source);
+        //rad.setText(""+testing.getLatitude());
 
 
     }
