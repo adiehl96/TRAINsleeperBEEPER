@@ -8,10 +8,10 @@ import android.os.Parcelable;
 /**
  * @author Hendrik Werner
  */
-public class NamedLocation extends Location implements Parcelable{
+public class NamedLocation extends Location implements Parcelable {
 
     public final String name;
-
+    public Location loco;
     public NamedLocation(String name) {
         super("");
         this.name = name;
@@ -22,12 +22,28 @@ public class NamedLocation extends Location implements Parcelable{
         this.name=name;
     }
 
-    /*protected NamedLocation(Parcel in) {
-        super(in);
+
+
+
+    protected NamedLocation(Parcel in) {
+        super("");
+        super.CREATOR.createFromParcel(in);
         name = in.readString();
     }
 
-    public static final Creator<NamedLocation> CREATOR = new Creator<NamedLocation>() {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest,flags);
+        dest.writeString(name);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<NamedLocation> CREATOR = new Parcelable.Creator<NamedLocation>() {
         @Override
         public NamedLocation createFromParcel(Parcel in) {
             return new NamedLocation(in);
@@ -38,16 +54,4 @@ public class NamedLocation extends Location implements Parcelable{
             return new NamedLocation[size];
         }
     };
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        super.writeToParcel(dest, flags);
-        dest.writeString(name);
-    }
-
-    public int describeContents() {
-        return 0;
-    }
-*/
-
 }

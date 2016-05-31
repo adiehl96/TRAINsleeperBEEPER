@@ -16,8 +16,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Set Position"
         android:id="@+id/button2"
-        android:layout_gravity="right|center_vertical"
-        />
+        android:layout_gravity="bottom|right" />
 </FrameLayout>

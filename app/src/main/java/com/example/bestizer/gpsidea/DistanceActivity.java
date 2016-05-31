@@ -27,7 +27,7 @@ public class DistanceActivity extends AppCompatActivity{
     private double latitude;
     private double longitude;
      */
-
+/*
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class DistanceActivity extends AppCompatActivity{
         latitude = intent.getIntExtra("Latit", -1);
         longitude = intent.getIntExtra("Longit", -1);
         */
-        
+        /*
     }
 
 
@@ -60,13 +60,13 @@ public class DistanceActivity extends AppCompatActivity{
             intent.putExtra("Longitude", longitude);
             intent.putExtra("Distance", distance);
             startActivity(intent);
-            */
+
             Intent intent = new Intent(this,alarm.class);
             Bundle bundle = new Bundle();
             bundle.putParcelable("alarm", alarmLocation);
             intent.putExtras(bundle);
             startActivity(intent);
 
-    }
+    }*/
 
 }
