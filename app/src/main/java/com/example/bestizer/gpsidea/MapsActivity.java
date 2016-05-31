@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import model.NamedLocation;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -62,6 +63,10 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
         getPos.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(MapsActivity.this,alarm.class);
+                NamedLocation nl = new NamedLocation("Map location");
+                nl.setLatitude(latitude);
+                nl.setLongitude(longitude);
+                i.putExtra("model.NamedLocation",nl);
                 i.putExtra("Latit", latitude);
                 i.putExtra("Longit", longitude);
 

@@ -17,6 +17,7 @@ public class NamedLocation extends Location implements Parcelable {
         this.name = name;
     }
 
+
     public NamedLocation(Location location, String name){
         super(location);
         this.name=name;
@@ -24,13 +25,15 @@ public class NamedLocation extends Location implements Parcelable {
 
 
 
-
+/*
     protected NamedLocation(Parcel in) {
         super("");
-        super.CREATOR.createFromParcel(in);
+        Location l = Location.CREATOR.createFromParcel(in);
+        NamedLocation lp = new NamedLocation(l,"");
         name = in.readString();
+        return lp;
     }
-
+*/
     @Override
     public int describeContents() {
         return 0;
@@ -46,7 +49,10 @@ public class NamedLocation extends Location implements Parcelable {
     public static final Parcelable.Creator<NamedLocation> CREATOR = new Parcelable.Creator<NamedLocation>() {
         @Override
         public NamedLocation createFromParcel(Parcel in) {
-            return new NamedLocation(in);
+            Location l = Location.CREATOR.createFromParcel(in);
+            NamedLocation lp = new NamedLocation(l,in.readString());
+
+            return lp;
         }
 
         @Override

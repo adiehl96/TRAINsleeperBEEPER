@@ -66,6 +66,7 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
     String source;
     Location mLastLocation;
     LocationRequest mLocationRequest;
+    NamedLocation nl;
     //NamedLocation test;
     //AlarmLocation tset;
     //Location testing;
@@ -83,6 +84,7 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
         //testing = new Location(tset);
 
         Intent intent = getIntent();
+        nl  = intent.getParcelableExtra("model.NamedLocation");
         lat = intent.getDoubleExtra("Latit", -1);
         lng = intent.getDoubleExtra("Longit", -1);
         destination = new LatLng(lat, lng);
@@ -111,7 +113,7 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
                   //      builder.build());
 
 
-        //rad.setText(""+testing.getLatitude());
+        rad.setText(""+nl.getLatitude());
 
 
     }
