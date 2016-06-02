@@ -62,13 +62,11 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
         getPos = (Button)this.findViewById(R.id.button2);
         getPos.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(MapsActivity.this,alarm.class);
+                Intent i = new Intent(MapsActivity.this,DistanceActivity.class);
                 NamedLocation nl = new NamedLocation("Map location");
                 nl.setLatitude(latitude);
                 nl.setLongitude(longitude);
                 i.putExtra("model.NamedLocation",nl);
-                i.putExtra("Latit", latitude);
-                i.putExtra("Longit", longitude);
 
                 startActivity(i);
             }
@@ -102,19 +100,7 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
         }
     }
 
-    public void checkpermission(Location loco) {
 
-        if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
-            loco = LocationServices.FusedLocationApi.getLastLocation(
-                    mGoogleApiClient);
-        }
-        else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_LOCATION);
-
-        }
-    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -145,7 +131,6 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
             @Override
             public void onMapClick(LatLng point) {
                 // TODO Auto-generated method stub
-                //lstLatLngs.add(point);
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(point));
                 latitude = point.latitude;
@@ -158,7 +143,6 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-         //checkpermission(mLastLocation);
         if (mLastLocation != null) {
 
             mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));

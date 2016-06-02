@@ -38,18 +38,12 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps">
-
         </activity>
         <activity
             android:name=".DistanceActivity">
-
         </activity>
         <activity
-            android:name=".alarm"
-            android:parentActivityName=".MapsActivity">
-            <intent-filter>
-                <action android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            android:name=".alarm">
         </activity>
     </application>
 

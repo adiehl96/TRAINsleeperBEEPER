@@ -8,7 +8,7 @@ import android.os.Parcelable;
 /**
  * @author Hendrik Werner
  */
-public class NamedLocation extends Location implements Parcelable {
+public class NamedLocation extends Location {
 
     public final String name;
     public Location loco;
