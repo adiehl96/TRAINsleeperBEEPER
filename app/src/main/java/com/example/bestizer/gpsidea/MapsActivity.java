@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.Button;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -29,7 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     GoogleApiClient googleApiClient;
-    private GoogleMap map;
+    private GoogleMap googleMap;
     double latitude, longitude;
 
     @Override
@@ -39,13 +38,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        if (googleApiClient == null) {
-            googleApiClient = new GoogleApiClient.Builder(this)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API)
-                    .build();
-        }
+        createGoogleApiClient();
     }
 
     @Override
@@ -56,33 +49,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
-    public void checkPermission(GoogleMap mzp) {
+    public void checkPermission(GoogleMap map) {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mzp.setMyLocationEnabled(true);
+            map.setMyLocationEnabled(true);
         } else {
-            ActivityCompat.requestPermissions(this,
+            ActivityCompat.requestPermissions(
+                    this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_LOCATION);
-
+                    MY_PERMISSIONS_REQUEST_LOCATION
+            );
         }
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap map) {
         Intent intent = getIntent();
         int lat = intent.getIntExtra("Latit", -1);
         int lon = intent.getIntExtra("Longit", -1);
-        map = googleMap;
-        checkPermission(map);
-        // Add a marker in Sydney and move the camera
+        googleMap = map;
+        checkPermission(this.googleMap);
         LatLng custom = new LatLng(lat, lon);
-        map.addMarker(new MarkerOptions().position(custom).title("Marker in custom city"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(custom));
-        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+        googleMap.addMarker(new MarkerOptions().position(custom).title("Marker in custom city"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(custom));
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng point) {
-                map.clear();
-                map.addMarker(new MarkerOptions().position(point));
+                googleMap.clear();
+                googleMap.addMarker(new MarkerOptions().position(point));
                 latitude = point.latitude;
                 longitude = point.longitude;
             }
@@ -108,6 +101,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent i = new Intent(MapsActivity.this, DistanceActivity.class);
         i.putExtra("model.NamedLocation", nl);
         startActivity(i);
+    }
+
+    private void createGoogleApiClient() {
+        if (googleApiClient == null) {
+            googleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
     }
 
 }
