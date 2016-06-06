@@ -25,5 +25,6 @@
         android:layout_below="@+id/imageButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:background="@drawable/mapsicon"/>
+        android:background="@drawable/mapsicon"
+        android:onClick="handleMapButton" />
 </RelativeLayout>
