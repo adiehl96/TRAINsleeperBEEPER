@@ -34,7 +34,7 @@ public class DistanceActivity extends AppCompatActivity {
     public void onClick(View v) {
         distance = Integer.parseInt(distanceField.getText().toString());
         alarmLocation = new model.AlarmLocation(namedLocation, distance);
-        Intent intent = new Intent(DistanceActivity.this, AlarmLocation.class);
+        Intent intent = new Intent(DistanceActivity.this, AlarmActivity.class);
         intent.putExtra("model.AlarmLocation", alarmLocation);
         startActivity(intent);
 
