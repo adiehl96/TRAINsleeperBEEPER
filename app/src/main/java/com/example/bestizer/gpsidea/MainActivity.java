@@ -22,16 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         train = (ImageButton) this.findViewById(R.id.imageButton);
         map = (ImageButton) this.findViewById(R.id.imageButton2);
-        /*
-        train.setOnClickListener(new ImageButton.OnClickListener() {
-            public void onClick(View v) {
-
-                Intent i = new Intent(MainActivity.this, StationChoiceActivity.class);
-                startActivity(i);
-
-            }
-        });
-        */
     }
 
     public void handleMapButton(View v) {
@@ -40,5 +30,12 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("Longit", 5);
         startActivity(i);
     }
+
+    /*
+    public void handleTrainButton(View v) {
+        Intent i = new Intent(MainActivity.this, StationChoiceActivity.class);
+        startActivity(i);
+    }
+    */
 
 }
