@@ -21,21 +21,16 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.BreakIterator;
-import java.util.ArrayList;
 
 
 public class MapsActivity extends FragmentActivity implements  OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
-    Location mLastLocation;
-    BreakIterator mLatitudeText;
-    BreakIterator mLongitudeText;
     Button getPos;
     double latitude,longitude;
 
@@ -143,15 +138,6 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        if (mLastLocation != null) {
-
-            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
-        }
-
-
-
-
     }
 
     @Override

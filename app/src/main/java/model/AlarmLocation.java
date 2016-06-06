@@ -1,15 +1,45 @@
 package model;
 
 
+import android.os.Parcel;
+
 /**
- * Created by Bestizer on 26-5-2016.
+ * Created by Hendrik Werner.
  */
-public class AlarmLocation extends NamedLocation{
+public class AlarmLocation extends NamedLocation {
 
-    public double radius;
+    public final int radius;
 
-    public AlarmLocation(NamedLocation NamedLocation, double radius) {
-        super(NamedLocation,NamedLocation.name);
-        this.radius=radius;
+    public static final Creator<AlarmLocation> CREATOR = new Creator<AlarmLocation>() {
+        @Override
+        public AlarmLocation createFromParcel(Parcel in) {
+            return new AlarmLocation(in);
+        }
+
+        @Override
+        public AlarmLocation[] newArray(int size) {
+            return new AlarmLocation[size];
+        }
+    };
+
+    public AlarmLocation(NamedLocation nl, int radius) {
+        super(nl);
+        this.radius = radius;
     }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeInt(radius);
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    protected AlarmLocation(Parcel in) {
+        super(in);
+        radius = in.readInt();
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.example.bestizer.gpsidea;
 
-import model.NamedLocation;
 import model.AlarmLocation;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -30,15 +29,10 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 98;
     public GoogleApiClient mGoogleApiClient;
     TextView lattest,message;
-    //double lat, lng;
-    //LatLng destination;
     Location mCurrentLocation;
-    double distance;
-    //double radius;
-    //String source;
     Location mLastLocation;
     LocationRequest mLocationRequest;
-    NamedLocation destination;
+    AlarmLocation destination;
 
 
     @Override
@@ -47,10 +41,8 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
         setContentView(R.layout.alarm);
 
         Intent intent = getIntent();
-        destination  = intent.getParcelableExtra("model.NamedLocation");
-        //lat = intent.getDoubleExtra("Latit", -1);
-        //lng = intent.getDoubleExtra("Longit", -1);
-        //destination = new LatLng(lat, lng);
+        destination  = intent.getParcelableExtra("model.AlarmLocation");
+
         mCurrentLocation = new Location("current");
 
 
@@ -93,10 +85,8 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
             mCurrentLocation.setLongitude(mLastLocation.getLongitude());
         }
 
-        distance = mCurrentLocation.distanceTo(destination);
-
-        lattest.setText(distance + "");
-        if(distance < 60.0) {
+        lattest.setText(mCurrentLocation.distanceTo(destination) + "");
+        if(mCurrentLocation.distanceTo(destination) < destination.radius) {
 
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -136,8 +126,8 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
 
     protected void createLocationRequest() {
         mLocationRequest = LocationRequest.create();
-        mLocationRequest.setInterval(10000);
-        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setInterval(1000);
+        mLocationRequest.setFastestInterval(800);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
 
@@ -165,9 +155,8 @@ public class alarm extends AppCompatActivity implements GoogleApiClient.Connecti
     }
 
     private void updateAndCheck(){
-        distance = mCurrentLocation.distanceTo(destination);
-        lattest.setText(distance + "");
-        if(distance < 60.0) {
+        lattest.setText(mCurrentLocation.distanceTo(destination) + "");
+        if(mCurrentLocation.distanceTo(destination) < destination.radius) {
             message.setText( "You're there");
 
         }

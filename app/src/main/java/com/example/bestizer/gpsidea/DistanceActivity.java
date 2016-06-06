@@ -22,7 +22,7 @@ public class DistanceActivity extends AppCompatActivity{
     NamedLocation namedLocation;
     private AlarmLocation alarmLocation;
 
-    double distance;
+    int distance;
 
 
 
@@ -47,10 +47,10 @@ public class DistanceActivity extends AppCompatActivity{
 
 
         public void onClick(View v){
-            distance = Double.parseDouble(distanceField.getText().toString());
+            distance = Integer.parseInt(distanceField.getText().toString());
+            alarmLocation = new AlarmLocation(namedLocation,distance);
             Intent intent = new Intent(DistanceActivity.this,alarm.class);
-            intent.putExtra("model.NamedLocation", namedLocation);
-            intent.putExtra("Distance", distance);
+            intent.putExtra("model.AlarmLocation", alarmLocation);
             startActivity(intent);
 
     }

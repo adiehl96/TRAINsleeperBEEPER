@@ -11,7 +11,6 @@ import android.os.Parcelable;
 public class NamedLocation extends Location {
 
     public final String name;
-    public Location loco;
     public NamedLocation(String name) {
         super("");
         this.name = name;
@@ -23,17 +22,19 @@ public class NamedLocation extends Location {
         this.name=name;
     }
 
-
-
-/*
-    protected NamedLocation(Parcel in) {
-        super("");
-        Location l = Location.CREATOR.createFromParcel(in);
-        NamedLocation lp = new NamedLocation(l,"");
-        name = in.readString();
-        return lp;
+    public NamedLocation(NamedLocation nl){
+       super(nl);
+        this.name=nl.name;
     }
-*/
+
+
+
+    protected NamedLocation(Parcel in) {
+        super(Location.CREATOR.createFromParcel(in));
+        name = in.readString();
+
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -49,10 +50,10 @@ public class NamedLocation extends Location {
     public static final Parcelable.Creator<NamedLocation> CREATOR = new Parcelable.Creator<NamedLocation>() {
         @Override
         public NamedLocation createFromParcel(Parcel in) {
-            Location l = Location.CREATOR.createFromParcel(in);
-            NamedLocation lp = new NamedLocation(l,in.readString());
+            //Location l = Location.CREATOR.createFromParcel(in);
+            //NamedLocation lp = new NamedLocation(l,in.readString());
 
-            return lp;
+            return new NamedLocation(in);
         }
 
         @Override
