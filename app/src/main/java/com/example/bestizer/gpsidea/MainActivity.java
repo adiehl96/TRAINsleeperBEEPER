@@ -13,16 +13,15 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton map;
-    ImageButton train;
+    private ImageButton map;
+    private ImageButton train;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         train = (ImageButton) this.findViewById(R.id.imageButton);
-        map = (ImageButton)this.findViewById(R.id.imageButton2);
-
+        map = (ImageButton) this.findViewById(R.id.imageButton2);
         map.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         /*
         train.setOnClickListener(new ImageButton.OnClickListener() {
             public void onClick(View v) {

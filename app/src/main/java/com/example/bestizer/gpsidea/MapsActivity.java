@@ -4,7 +4,9 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+
 import model.NamedLocation;
+
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -27,12 +29,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.text.BreakIterator;
 
 
-public class MapsActivity extends FragmentActivity implements  OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
     Button getPos;
-    double latitude,longitude;
+    double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,7 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
         // Create an instance of GoogleAPIClient.
-
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
                     .addConnectionCallbacks(this)
@@ -53,24 +53,18 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
                     .addApi(LocationServices.API)
                     .build();
         }
-
-        getPos = (Button)this.findViewById(R.id.button2);
+        getPos = (Button) this.findViewById(R.id.button2);
         getPos.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(MapsActivity.this,DistanceActivity.class);
+                Intent i = new Intent(MapsActivity.this, DistanceActivity.class);
                 NamedLocation nl = new NamedLocation("Map location");
                 nl.setLatitude(latitude);
                 nl.setLongitude(longitude);
-                i.putExtra("model.NamedLocation",nl);
+                i.putExtra("model.NamedLocation", nl);
 
                 startActivity(i);
             }
         });
-
-
-
-
-
     }
 
     @Override
@@ -79,15 +73,12 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
         super.onStart();
     }
 
-
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     public void checkpermission(GoogleMap mzp) {
-
-        if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mzp.setMyLocationEnabled(true);
-        }
-        else {
+        } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSIONS_REQUEST_LOCATION);
@@ -108,33 +99,25 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Intent intent = getIntent();
-        int lat = intent.getIntExtra("Latit",-1);
-        int Longit = intent.getIntExtra("Longit",-1);
-
+        int lat = intent.getIntExtra("Latit", -1);
+        int longit = intent.getIntExtra("Longit", -1);
         mMap = googleMap;
-
         checkpermission(mMap);
-
         // Add a marker in Sydney and move the camera
-        LatLng custom = new LatLng(lat,Longit);
-
+        LatLng custom = new LatLng(lat, Longit);
         mMap.addMarker(new MarkerOptions().position(custom).title("Marker in custom city"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(custom));
-
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-
             @Override
             public void onMapClick(LatLng point) {
                 // TODO Auto-generated method stub
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(point));
                 latitude = point.latitude;
-                longitude= point.longitude;
+                longitude = point.longitude;
             }
         });
-
     }
-
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -142,14 +125,10 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
 
     @Override
     public void onConnectionSuspended(int i) {
-
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
-
-
 
 }

@@ -43,7 +43,7 @@
             android:name=".DistanceActivity">
         </activity>
         <activity
-            android:name=".alarm">
+            android:name=".AlarmLocation">
         </activity>
     </application>
 
