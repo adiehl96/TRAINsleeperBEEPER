@@ -30,7 +30,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final double NL_LON = 5.66666667;
 
     private GoogleApiClient googleApiClient;
-    private GoogleMap googleMap;
 
     private double latitude, longitude;
 
@@ -66,7 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(final GoogleMap map) {
         double lat = NL_LAT;
         double lon = NL_LON;
-        googleMap = map;
+        GoogleMap googleMap = map;
         checkPermission(googleMap);
         LatLng custom = new LatLng(lat, lon);
         googleMap.addMarker(new MarkerOptions().position(custom).title("Marker in custom city"));
