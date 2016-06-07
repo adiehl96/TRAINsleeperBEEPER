@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 
-
 public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     public static final int PERMISSIONS_REQUEST_LOCATION_ID = 98;
@@ -79,7 +78,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
             currentLocation.setLatitude(lastLocation.getLatitude());
             currentLocation.setLongitude(lastLocation.getLongitude());
         }
-        distance.setText((int)(currentLocation.distanceTo(destination)/1000) + " km");
+        distance.setText((int) (currentLocation.distanceTo(destination) / 1000) + " km");
         if (currentLocation.distanceTo(destination) < destination.radius) {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -111,7 +110,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-
     protected void createLocationRequest() {
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(1000);
@@ -138,7 +136,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void updateAndCheck() {
-        distance.setText((int)(currentLocation.distanceTo(destination)/1000) + " km");
+        distance.setText((int) (currentLocation.distanceTo(destination) / 1000) + " km");
         if (currentLocation.distanceTo(destination) < destination.radius) {
             message.setText("You're there");
             if (vibrateEnable) {
@@ -150,4 +148,5 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
             message.setText("Not yet there");
         }
     }
+
 }
