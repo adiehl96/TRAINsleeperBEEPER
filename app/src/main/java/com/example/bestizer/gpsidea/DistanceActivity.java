@@ -29,7 +29,6 @@ public class DistanceActivity extends AppCompatActivity {
         Intent intent = new Intent(DistanceActivity.this, AlarmActivity.class);
         intent.putExtra("model.AlarmLocation", new model.AlarmLocation(namedLocation, distance));
         startActivity(intent);
-
     }
 
 }

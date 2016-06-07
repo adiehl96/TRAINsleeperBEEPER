@@ -9,6 +9,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Vibrator;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -35,6 +36,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     Location lastLocation;
     LocationRequest locationRequest;
     model.AlarmLocation destination;
+    private boolean vibrateEnable = true;
+    private boolean ringtoneEnable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,9 +138,14 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void updateAndCheck() {
-        distance.setText(String.valueOf(currentLocation.distanceTo(destination)));
+        distance.setText(currentLocation.distanceTo(destination) + "");
         if (currentLocation.distanceTo(destination) < destination.radius) {
             message.setText("You're there");
+            if (vibrateEnable) {
+                //vibrate();
+            } else if (ringtoneEnable) {
+                //playAlarm();
+            }
         } else {
             message.setText("Not yet there");
         }

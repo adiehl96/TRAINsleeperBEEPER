@@ -62,20 +62,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onMapReady(GoogleMap map) {
-        Intent intent = getIntent();
-        int lat = intent.getIntExtra("Latit", -1);
-        int lon = intent.getIntExtra("Longit", -1);
+    public void onMapReady(final GoogleMap map) {
+        double lat = 52.2333333;
+        double lon = 5.66666667;
         googleMap = map;
-        checkPermission(this.googleMap);
+        checkPermission(googleMap);
         LatLng custom = new LatLng(lat, lon);
         googleMap.addMarker(new MarkerOptions().position(custom).title("Marker in custom city"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(custom));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(7.0f));
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng point) {
-                googleMap.clear();
-                googleMap.addMarker(new MarkerOptions().position(point));
+                map.clear();
+                map.addMarker(new MarkerOptions().position(point));
                 latitude = point.latitude;
                 longitude = point.longitude;
             }
