@@ -9,7 +9,6 @@ import android.widget.AutoCompleteTextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import model.NamedLocation;
 import model.NamedLocationProvider;
