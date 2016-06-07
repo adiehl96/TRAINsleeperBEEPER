@@ -30,9 +30,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final double NL_LAT = 52.2333333;
     private static final double NL_LON = 5.66666667;
 
-    GoogleApiClient googleApiClient;
+    private GoogleApiClient googleApiClient;
     private GoogleMap googleMap;
-    double latitude, longitude;
+    private double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
