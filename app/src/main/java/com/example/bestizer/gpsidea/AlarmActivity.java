@@ -1,5 +1,6 @@
 package com.example.bestizer.gpsidea;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.Ringtone;
@@ -21,6 +22,7 @@ import android.Manifest;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -36,6 +38,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     private Location lastLocation;
     private LocationRequest locationRequest;
     private model.AlarmLocation destination;
+    private Ringtone r = null;
+    private Vibrator vibrator = null;
     private boolean vibrateEnable = true;
     private boolean ringtoneEnable = false;
 
@@ -137,17 +141,41 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         updateAndCheck();
     }
 
+    public void cancelAlarm(View v) {
+        if (vibrator != null) {
+            vibrator.cancel();
+        } else if (r != null) {
+            r.stop();
+        }
+        Intent i = new Intent(AlarmActivity.this, MainActivity.class);
+        startActivity(i);
+    }
+
     private void updateAndCheck() {
         distance.setText((int)(currentLocation.distanceTo(destination)/1000) + " km");
         if (currentLocation.distanceTo(destination) < destination.radius) {
             message.setText("You're there");
             if (vibrateEnable) {
-                //vibrate();
+                vibrate();
             } else if (ringtoneEnable) {
-                //playAlarm();
+                playAlarm();
             }
         } else {
             message.setText("Not yet there");
         }
     }
+
+    private void playAlarm(){
+
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+        r.play();
+    }
+
+    private void vibrate(){
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        long[] pattern = {0, 100, 1000};
+        vibrator.vibrate(pattern, 0);
+    }
+
 }

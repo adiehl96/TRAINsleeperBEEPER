@@ -10,15 +10,15 @@
     tools:context="com.example.bestizer.gpsidea.DistanceActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter the desired distance."
+        android:text="Enter the desired distance in km"
         android:id="@+id/textView"
-        android:textSize="25dp"
+        android:textSize="24dp"
         android:layout_marginTop="59dp"
         android:textColor="#000000"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
