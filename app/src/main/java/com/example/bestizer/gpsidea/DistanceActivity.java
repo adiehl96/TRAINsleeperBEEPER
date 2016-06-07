@@ -13,7 +13,6 @@ public class DistanceActivity extends AppCompatActivity {
 
     private EditText distanceField;
     private NamedLocation namedLocation;
-    private int distance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,7 @@ public class DistanceActivity extends AppCompatActivity {
 
     public void onClick(View v) {
         try {
-            distance = Integer.parseInt(distanceField.getText().toString()) * 1000;
+            int distance = Integer.parseInt(distanceField.getText().toString()) * 1000;
             Intent intent = new Intent(DistanceActivity.this, AlarmActivity.class);
             intent.putExtra("model.AlarmLocation", new model.AlarmLocation(namedLocation, distance));
             startActivity(intent);
