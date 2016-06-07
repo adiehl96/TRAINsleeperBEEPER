@@ -142,9 +142,9 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         if (currentLocation.distanceTo(destination) < destination.radius) {
             message.setText("You're there");
             if (vibrateEnable) {
-                vibrate();
+                //vibrate();
             } else if (ringtoneEnable) {
-                playAlarm();
+                //playAlarm();
             }
         } else {
             message.setText("Not yet there");
