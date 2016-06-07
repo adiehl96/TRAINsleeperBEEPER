@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import model.NamedLocation;
 
@@ -23,10 +24,15 @@ public class DistanceActivity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        distance = Integer.parseInt(distanceField.getText().toString())*1000;
-        Intent intent = new Intent(DistanceActivity.this, AlarmActivity.class);
-        intent.putExtra("model.AlarmLocation", new model.AlarmLocation(namedLocation, distance));
-        startActivity(intent);
+        try {
+            distance = Integer.parseInt(distanceField.getText().toString()) * 1000;
+            Intent intent = new Intent(DistanceActivity.this, AlarmActivity.class);
+            intent.putExtra("model.AlarmLocation", new model.AlarmLocation(namedLocation, distance));
+            startActivity(intent);
+        } catch (NumberFormatException ex) {
+            Toast toast = Toast.makeText(this, "You must enter a distance.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 }
