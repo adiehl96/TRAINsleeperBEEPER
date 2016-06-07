@@ -27,6 +27,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    private static final double NL_LAT = 52.2333333;
+    private static final double NL_LON = 5.66666667;
+
     GoogleApiClient googleApiClient;
     private GoogleMap googleMap;
     double latitude, longitude;
@@ -63,8 +66,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(final GoogleMap map) {
-        double lat = 52.2333333;
-        double lon = 5.66666667;
+        double lat = NL_LAT;
+        double lon = NL_LON;
         googleMap = map;
         checkPermission(googleMap);
         LatLng custom = new LatLng(lat, lon);
