@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleMapButton(View v) {
         Intent i = new Intent(MainActivity.this, MapsActivity.class);
-        i.putExtra("Latit", 52);
-        i.putExtra("Longit", 5);
         startActivity(i);
     }
 
