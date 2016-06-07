@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    /*
+
     public void handleTrainButton(View v) {
         Intent i = new Intent(MainActivity.this, StationChoiceActivity.class);
         startActivity(i);
     }
-    */
+
 
 }

@@ -76,12 +76,15 @@ public class NsApiParser implements NamedLocationProvider {
         return e.getElementsByTagName(tag).item(0).getTextContent();
     }
 
+
     public NsApiParser() throws ExecutionException, InterruptedException {
         stations = new LinkedList<>();
         URLConnection connection = generateURLConnection();
-        connection.setRequestProperty("Authentication", "Basic " + ENCODED_AUTH);
+        connection.setRequestProperty("Authorization", "Basic " + ENCODED_AUTH);
         Document doc = new UrlBackgroundTask().execute(connection).get();
+        System.out.println(doc);
         NodeList stationNodes = doc.getElementsByTagName("Station");
+        System.out.println(stationNodes.getLength());
         for (int i = 0; i < stationNodes.getLength(); i++) {
             stations.add(parse(stationNodes.item(i)));
         }

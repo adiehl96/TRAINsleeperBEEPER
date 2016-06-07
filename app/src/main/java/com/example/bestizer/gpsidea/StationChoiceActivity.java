@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -34,6 +35,7 @@ public class StationChoiceActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_choice);
+        System.out.println("yesyesyes");
         stationChoice = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView);
 
         try {
@@ -45,6 +47,7 @@ public class StationChoiceActivity extends AppCompatActivity{
         }
         listNamedLocation = (List<NamedLocation>) parser.getLocations();
 
+        listStationNames = new ArrayList<>();
         getStationNames();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,listStationNames);
         stationChoice.setAdapter(adapter);
