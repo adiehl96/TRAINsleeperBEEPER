@@ -79,7 +79,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
             currentLocation.setLatitude(lastLocation.getLatitude());
             currentLocation.setLongitude(lastLocation.getLongitude());
         }
-        distance.setText(String.valueOf(currentLocation.distanceTo(destination)));
+        distance.setText((int)(currentLocation.distanceTo(destination)/1000) + " km");
         if (currentLocation.distanceTo(destination) < destination.radius) {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -138,13 +138,13 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void updateAndCheck() {
-        distance.setText(currentLocation.distanceTo(destination) + "");
+        distance.setText((int)(currentLocation.distanceTo(destination)/1000) + " km");
         if (currentLocation.distanceTo(destination) < destination.radius) {
             message.setText("You're there");
             if (vibrateEnable) {
-                //vibrate();
+                vibrate();
             } else if (ringtoneEnable) {
-                //playAlarm();
+                playAlarm();
             }
         } else {
             message.setText("Not yet there");

@@ -6,9 +6,8 @@
     tools:context="com.example.bestizer.gpsidea.StationChoiceActivity">
 
     <AutoCompleteTextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter station"
         android:id="@+id/autoCompleteTextView"
         android:layout_marginTop="149dp"
         android:layout_alignParentTop="true"
@@ -24,4 +23,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="116dp"
         android:onClick="onClick"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your final destination"
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:focusableInTouchMode="true"
+        android:textSize="30dp" />
 </RelativeLayout>
