@@ -30,12 +30,12 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
 
     public static final int PERMISSIONS_REQUEST_LOCATION_ID = 98;
     public GoogleApiClient googleApiClient;
-    TextView distance;
-    TextView message;
-    Location currentLocation;
-    Location lastLocation;
-    LocationRequest locationRequest;
-    model.AlarmLocation destination;
+    private TextView distance;
+    private TextView message;
+    private Location currentLocation;
+    private Location lastLocation;
+    private LocationRequest locationRequest;
+    private model.AlarmLocation destination;
     private boolean vibrateEnable = true;
     private boolean ringtoneEnable = false;
 
