@@ -70,9 +70,7 @@ public class NsApiParser implements NamedLocationProvider {
         URLConnection connection = generateURLConnection();
         connection.setRequestProperty("Authorization", "Basic " + ENCODED_AUTH);
         Document doc = getDocument(connection);
-        System.out.println(doc);
         NodeList stationNodes = doc.getElementsByTagName("Station");
-        System.out.println(stationNodes.getLength());
         for (int i = 0; i < stationNodes.getLength(); i++) {
             stations.add(parse(stationNodes.item(i)));
         }
