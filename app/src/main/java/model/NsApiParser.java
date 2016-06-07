@@ -49,24 +49,6 @@ public class NsApiParser implements NamedLocationProvider {
         return location;
     }
 
-    private static DocumentBuilder getBuilder() {
-        try {
-            return DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private static Document parse(URLConnection connection) {
-        try {
-            return getBuilder().parse(connection.getInputStream());
-        } catch (IOException | SAXException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     /**
      * @param e the element that contains the tag
      * @param tag the tag that contains the content
@@ -76,12 +58,23 @@ public class NsApiParser implements NamedLocationProvider {
         return e.getElementsByTagName(tag).item(0).getTextContent();
     }
 
+    private static Document getDocument(URLConnection connection) {
+        try {
+            return new UrlBackgroundTask().execute(connection).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    public NsApiParser() throws ExecutionException, InterruptedException {
+
+    public NsApiParser() {
         stations = new LinkedList<>();
         URLConnection connection = generateURLConnection();
         connection.setRequestProperty("Authorization", "Basic " + ENCODED_AUTH);
-        Document doc = new UrlBackgroundTask().execute(connection).get();
+        Document doc = getDocument(connection);
         System.out.println(doc);
         NodeList stationNodes = doc.getElementsByTagName("Station");
         System.out.println(stationNodes.getLength());
@@ -94,4 +87,5 @@ public class NsApiParser implements NamedLocationProvider {
     public Collection<NamedLocation> getLocations() {
         return stations;
     }
+
 }
