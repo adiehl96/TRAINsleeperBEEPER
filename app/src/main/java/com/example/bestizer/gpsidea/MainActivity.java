@@ -27,16 +27,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent i = new Intent(MainActivity.this, MapsActivity.class);
-
-                i.putExtra("Latit", 52);
-                i.putExtra("Longit", 5);
                 startActivity(i);
 
             }
         });
 
-        /*
-        train.setOnClickListener(new ImageButton.OnClickListener() {
+
+
+        train.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
                 Intent i = new Intent(MainActivity.this, StationChoiceActivity.class);
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        */
+
     }
 
 }

@@ -15,13 +15,9 @@ import model.NamedLocation;
 
 public class DistanceActivity extends AppCompatActivity{
 
-    private TextView message;
     EditText distanceField;
-    private Button goodnight;
-
     NamedLocation namedLocation;
     private AlarmLocation alarmLocation;
-
     int distance;
 
 
@@ -33,15 +29,10 @@ public class DistanceActivity extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_distance);
-
-        message = (TextView) this.findViewById(R.id.textView);
         distanceField = (EditText)this.findViewById(R.id.editText);
-        goodnight = (Button)this.findViewById(R.id.button);
 
         Intent i = getIntent();
         namedLocation =  i.getParcelableExtra("model.NamedLocation");
-
-
 
     }
 

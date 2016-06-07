@@ -92,6 +92,7 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSIONS_REQUEST_LOCATION);
 
+
         }
     }
 
@@ -107,20 +108,20 @@ public class MapsActivity extends FragmentActivity implements  OnMapReadyCallbac
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Intent intent = getIntent();
-        int lat = intent.getIntExtra("Latit",-1);
-        int Longit = intent.getIntExtra("Longit",-1);
+        double lat = 52.2333333;
+        double longit = 5.66666667;
 
         mMap = googleMap;
 
         checkpermission(mMap);
 
         // Add a marker in Sydney and move the camera
-        LatLng custom = new LatLng(lat,Longit);
+        LatLng custom = new LatLng(lat,longit);
 
         mMap.addMarker(new MarkerOptions().position(custom).title("Marker in custom city"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(custom));
 
+        mMap.animateCamera( CameraUpdateFactory.zoomTo( 7.0f ) );
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
