@@ -4,7 +4,6 @@ import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 /**
  * @author Hendrik Werner
  */
