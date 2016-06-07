@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +52,16 @@ public class StationChoiceActivity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        Intent intent = new Intent(StationChoiceActivity.this, DistanceActivity.class);
-        intent.putExtra("model.NamedLocation", findLocation(stationChoice.getText().toString()));
-        startActivity(intent);
+        String enteredName = stationChoice.getText().toString();
+        NamedLocation nl = findLocation(enteredName);
+        if (nl == null) {
+            Toast toast = Toast.makeText(this, String.format("%s is not a station.", enteredName), Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            Intent intent = new Intent(StationChoiceActivity.this, DistanceActivity.class);
+            intent.putExtra("model.NamedLocation", nl);
+            startActivity(intent);
+        }
     }
 
 
