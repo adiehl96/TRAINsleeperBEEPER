@@ -21,7 +21,7 @@ public class DistanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_distance);
         distanceField = (EditText) this.findViewById(R.id.editText);
         namedLocation = getIntent().getParcelableExtra("model.NamedLocation");
-        invalidDistanceToast = Toast.makeText(this, "You must enter a distance.", Toast.LENGTH_SHORT);
+        invalidDistanceToast = Toast.makeText(this, "You must enter a valid distance.", Toast.LENGTH_SHORT);
     }
 
     public void onClick(View v) {
