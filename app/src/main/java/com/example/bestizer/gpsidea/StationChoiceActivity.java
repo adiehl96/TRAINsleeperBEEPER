@@ -27,13 +27,7 @@ public class StationChoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_choice);
         stationChoice = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
-        try {
-            parser = new NsApiParser();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        parser = new NsApiParser();
         listNamedLocation = (List<NamedLocation>) parser.getLocations();
         listStationNames = new ArrayList<>();
         getStationNames();
