@@ -7,6 +7,6 @@ import java.util.Collection;
  */
 public interface NamedLocationProvider {
 
-    public Collection<NamedLocation> getLocations();
+    Collection<NamedLocation> getLocations();
 
 }
