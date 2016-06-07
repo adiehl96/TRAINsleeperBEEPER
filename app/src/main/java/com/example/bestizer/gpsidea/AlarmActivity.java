@@ -23,6 +23,7 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -32,15 +33,14 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     public static final int PERMISSIONS_REQUEST_LOCATION_ID = 98;
     public GoogleApiClient googleApiClient;
     private TextView distance;
-    private TextView message;
     private Location currentLocation;
     private Location lastLocation;
     private LocationRequest locationRequest;
     private model.AlarmLocation destination;
     private Ringtone r = null;
     private Vibrator vibrator = null;
-    private boolean vibrateEnable = true;
-    private boolean ringtoneEnable = false;
+    private CheckBox vibrateEnable;
+    private CheckBox ringtoneEnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         destination = intent.getParcelableExtra("model.AlarmLocation");
         currentLocation = new Location("current");
         distance = (TextView) this.findViewById(R.id.textView);
-        message = (TextView) this.findViewById(R.id.textView2);
+        vibrateEnable = (CheckBox) this.findViewById(R.id.checkBox);
+        ringtoneEnable = (CheckBox) this.findViewById(R.id.checkBox2);
         if (googleApiClient == null) {
             googleApiClient = new GoogleApiClient.Builder(this)
                     .addConnectionCallbacks(this)
@@ -139,15 +140,12 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     private void updateAndCheck() {
         distance.setText((int) (currentLocation.distanceTo(destination) / 1000) + " km");
         if (currentLocation.distanceTo(destination) < destination.radius) {
-            message.setText("You're there");
-            if (vibrateEnable) {
+            if (vibrateEnable.isChecked()) {
                 vibrate();
             }
-            if (ringtoneEnable) {
+            if (ringtoneEnable.isChecked()) {
                 playAlarm();
             }
-        } else {
-            message.setText("Not yet there");
         }
     }
 
