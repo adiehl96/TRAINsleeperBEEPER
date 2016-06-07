@@ -11,6 +11,7 @@ import model.NamedLocation;
 
 public class DistanceActivity extends AppCompatActivity {
 
+    private Toast invalidDistanceToast;
     private EditText distanceField;
     private NamedLocation namedLocation;
 
@@ -20,6 +21,7 @@ public class DistanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_distance);
         distanceField = (EditText) this.findViewById(R.id.editText);
         namedLocation = getIntent().getParcelableExtra("model.NamedLocation");
+        invalidDistanceToast = Toast.makeText(this, "You must enter a distance.", Toast.LENGTH_SHORT);
     }
 
     public void onClick(View v) {
@@ -29,8 +31,7 @@ public class DistanceActivity extends AppCompatActivity {
             intent.putExtra("model.AlarmLocation", new model.AlarmLocation(namedLocation, distance));
             startActivity(intent);
         } catch (NumberFormatException ex) {
-            Toast toast = Toast.makeText(this, "You must enter a distance.", Toast.LENGTH_SHORT);
-            toast.show();
+            invalidDistanceToast.show();
         }
     }
 
