@@ -1,14 +1,11 @@
 package model;
 
-
 import android.os.Parcel;
 
 /**
  * Created by Hendrik Werner.
  */
 public class AlarmLocation extends NamedLocation {
-
-    public final int radius;
 
     public static final Creator<AlarmLocation> CREATOR = new Creator<AlarmLocation>() {
         @Override
@@ -21,6 +18,8 @@ public class AlarmLocation extends NamedLocation {
             return new AlarmLocation[size];
         }
     };
+
+    public final int radius;
 
     public AlarmLocation(NamedLocation nl, int radius) {
         super(nl);
