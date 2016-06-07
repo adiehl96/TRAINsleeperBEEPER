@@ -40,4 +40,13 @@
         android:layout_marginBottom="89dp"
         android:onClick="onClick"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="The alarm will be triggered when you are closer to your destination than this distance."
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
 </RelativeLayout>
