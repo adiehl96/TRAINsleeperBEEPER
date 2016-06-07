@@ -78,21 +78,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        checkpermission();
-        if (lastLocation != null) {
-            currentLocation.setLatitude(lastLocation.getLatitude());
-            currentLocation.setLongitude(lastLocation.getLongitude());
-        }
-        distance.setText((int)(currentLocation.distanceTo(destination)/1000) + " km");
-        if (currentLocation.distanceTo(destination) < destination.radius) {
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-            r.play();
-            message.setText("You're there");
-        } else {
-            message.setText("Not yet there");
-            startLocationUpdates();
-        }
+        startLocationUpdates();
     }
 
     @Override
@@ -144,7 +130,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     public void cancelAlarm(View v) {
         if (vibrator != null) {
             vibrator.cancel();
-        } else if (r != null) {
+        }
+        if (r != null) {
             r.stop();
         }
         Intent i = new Intent(AlarmActivity.this, MainActivity.class);
