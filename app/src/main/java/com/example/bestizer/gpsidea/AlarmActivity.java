@@ -37,7 +37,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     private Location lastLocation;
     private LocationRequest locationRequest;
     private model.AlarmLocation destination;
-    private Ringtone r = null;
+    private Ringtone ringtone = null;
     private Vibrator vibrator = null;
     private CheckBox vibrateEnable;
     private CheckBox ringtoneEnable;
@@ -130,8 +130,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         if (vibrator != null) {
             vibrator.cancel();
         }
-        if (r != null) {
-            r.stop();
+        if (ringtone != null) {
+            ringtone.stop();
         }
         Intent i = new Intent(AlarmActivity.this, MainActivity.class);
         startActivity(i);
@@ -152,8 +152,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     private void playAlarm(){
 
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-        r.play();
+        ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
+        ringtone.play();
     }
 
     private void vibrate(){
