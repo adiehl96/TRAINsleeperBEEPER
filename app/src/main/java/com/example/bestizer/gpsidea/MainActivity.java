@@ -14,13 +14,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleMapButton(View v) {
-        Intent i = new Intent(MainActivity.this, MapsActivity.class);
-        startActivity(i);
+        startActivity(new Intent(MainActivity.this, MapsActivity.class));
     }
 
     public void handleTrainButton(View v) {
-        Intent i = new Intent(MainActivity.this, StationChoiceActivity.class);
-        startActivity(i);
+        startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
     }
 
 }
