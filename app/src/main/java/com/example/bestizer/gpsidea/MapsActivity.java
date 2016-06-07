@@ -27,11 +27,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    public static final int PERMISSIONS_REQUEST_LOCATION_ID = 99;
     private static final double NL_LAT = 52.2333333;
     private static final double NL_LON = 5.66666667;
 
     private GoogleApiClient googleApiClient;
     private GoogleMap googleMap;
+
     private double latitude, longitude;
 
     @Override
@@ -50,8 +52,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onStart();
     }
 
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-
     public void checkPermission(GoogleMap map) {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
@@ -59,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             ActivityCompat.requestPermissions(
                     this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_LOCATION
+                    PERMISSIONS_REQUEST_LOCATION_ID
             );
         }
     }
