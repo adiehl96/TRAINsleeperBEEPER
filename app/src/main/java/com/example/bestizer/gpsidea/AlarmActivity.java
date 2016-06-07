@@ -142,7 +142,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
             message.setText("You're there");
             if (vibrateEnable) {
                 vibrate();
-            } else if (ringtoneEnable) {
+            }
+            if (ringtoneEnable) {
                 playAlarm();
             }
         } else {
