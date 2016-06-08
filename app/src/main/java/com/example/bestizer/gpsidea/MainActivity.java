@@ -22,11 +22,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            startActivity(new Intent(MainActivity.this, MapsActivity.class));
-        } else {
-            noLocationPermissionToast.show();
-        }
     }
 
     public void handleMapButton(View v) {
