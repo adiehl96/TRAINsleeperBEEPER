@@ -31,15 +31,16 @@ import com.google.android.gms.common.ConnectionResult;
 
 public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
-    public static final int PERMISSIONS_REQUEST_LOCATION_ID = 98;
-    public GoogleApiClient googleApiClient;
+    private static final int PERMISSIONS_REQUEST_LOCATION_ID = 98;
+    private static final long[] VIBRATION_PATTERN = {0, 1000, 1000};
+
+    private GoogleApiClient googleApiClient;
     private TextView distance;
     private Location currentLocation;
     private LocationRequest locationRequest;
     private model.AlarmLocation destination;
     private Ringtone ringtone;
     private Vibrator vibrator;
-    private long[] pattern = {0, 1000, 1000};
     private Switch switchVibration;
     private Switch switchRingtone;
 
@@ -128,7 +129,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         distance.setText(String.format("%.1f km", dist / 1000));
         if (dist < destination.radius) {
             if (switchVibration.isChecked()) {
-                vibrator.vibrate(pattern, 0);
+                vibrator.vibrate(VIBRATION_PATTERN, 0);
             }
             if (switchRingtone.isChecked()) {
                 ringtone.play();
