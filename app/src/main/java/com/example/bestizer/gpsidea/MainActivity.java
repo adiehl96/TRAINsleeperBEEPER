@@ -29,13 +29,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleTrainButton(View v) {
-        if (networkAvailable() && hasFineLocationPermission()) {
-            startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
-        } else {
+        if (!tryMapsActivity()) {
             if(!hasFineLocationPermission()) {
                 noLocationPermissionToast.show();
                 requestFineLocation();
-                handleTrainButton(v);
+                tryMapsActivity();
             } else if (!networkAvailable()) {
                 noInternetToast.show();
             }
@@ -69,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
+    }
+
+    private boolean tryMapsActivity() {
+        if (networkAvailable() && hasFineLocationPermission()) {
+            startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
