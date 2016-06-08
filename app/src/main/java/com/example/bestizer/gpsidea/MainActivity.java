@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         if (!tryMapsActivity()) {
             if(!hasFineLocationPermission()) {
                 noLocationPermissionToast.show();
-                requestFineLocation();
+                requestFineLocation(PERMISSIONS_REQUEST_LOCATION_ID_TRAIN);
             } else if (!networkAvailable()) {
                 noInternetToast.show();
             }
