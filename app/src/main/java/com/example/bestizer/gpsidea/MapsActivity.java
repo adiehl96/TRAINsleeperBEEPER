@@ -45,8 +45,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     protected void onStart() {
-        googleApiClient.connect();
         super.onStart();
+        googleApiClient.connect();
     }
 
     public void checkPermission(GoogleMap map) {
