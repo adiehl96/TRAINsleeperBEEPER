@@ -80,7 +80,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
         destination = getIntent().getParcelableExtra("model.AlarmLocation");
-        distance = (TextView) this.findViewById(R.id.textView);
+        distance = (TextView) this.findViewById(R.id.distanceText);
         switchVibration = (Switch) this.findViewById(R.id.switchVibration);
         switchRingtone = (Switch) this.findViewById(R.id.switchRingtone);
         createGoogleApiClient();
