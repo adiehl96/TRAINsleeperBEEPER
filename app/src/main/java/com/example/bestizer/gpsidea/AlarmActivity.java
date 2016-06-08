@@ -26,6 +26,8 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 
+import model.AlarmLocation;
+
 public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private static final int PERMISSIONS_REQUEST_LOCATION_ID = 98;
@@ -35,7 +37,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     private TextView distance;
     private Location currentLocation;
     private LocationRequest locationRequest;
-    private model.AlarmLocation destination;
+    private AlarmLocation destination;
     private Ringtone ringtone;
     private Vibrator vibrator;
     private Switch switchVibration;
