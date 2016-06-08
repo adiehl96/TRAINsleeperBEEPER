@@ -136,14 +136,14 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    private void playAlarm(){
+    private void playAlarm() {
 
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
         ringtone.play();
     }
 
-    private void vibrate(){
+    private void vibrate() {
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         long[] pattern = {0, 100, 1000};
         vibrator.vibrate(pattern, 0);
