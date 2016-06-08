@@ -29,7 +29,6 @@
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal|top"
         android:backgroundTint="@color/background_material_dark"
-        android:autoText="true"
         android:padding="@dimen/abc_control_padding_material"
         android:textColor="@color/background_material_light"
         android:background="@color/background_material_dark" />
