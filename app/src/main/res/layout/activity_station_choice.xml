@@ -12,7 +12,8 @@
         android:layout_marginTop="149dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:hint="Stationname " />
 
     <Button
         android:layout_width="wrap_content"
@@ -21,7 +22,9 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="116dp"
-        android:onClick="handleChooseButton"/>
+        android:onClick="handleChooseButton">
+        <requestFocus/>
+    </Button>
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,7 +32,9 @@
         android:text="Enter your final destination"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:focusableInTouchMode="true"
-        android:textSize="30dp" />
+        android:textSize="@dimen/abc_text_size_headline_material"
+        android:textColor="@color/abc_primary_text_material_light"
+        android:enabled="true" />
 </RelativeLayout>
