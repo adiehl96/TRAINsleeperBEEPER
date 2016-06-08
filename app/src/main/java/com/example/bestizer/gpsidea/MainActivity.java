@@ -27,12 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean networkAvailable() {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
-
-        boolean isAvailable = false;
         if (networkInfo != null && networkInfo.isConnected()) {
-            isAvailable = true;
+            return true;
         }
-        return isAvailable;
+        return false;
     }
 
     @Override
