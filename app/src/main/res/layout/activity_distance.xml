@@ -15,7 +15,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Enter the desired distance in km"
-        android:id="@+id/textView"
         android:textSize="@dimen/abc_text_size_headline_material"
         android:textColor="@color/abc_primary_text_material_light"
         android:textAlignment="center" />
