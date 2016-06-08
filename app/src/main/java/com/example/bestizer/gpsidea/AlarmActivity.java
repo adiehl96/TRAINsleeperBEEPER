@@ -37,8 +37,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     private Location currentLocation;
     private LocationRequest locationRequest;
     private model.AlarmLocation destination;
-    private Ringtone ringtone = null;
-    private Vibrator vibrator = null;
+    private Ringtone ringtone;
+    private Vibrator vibrator;
     private Switch switchVibration;
     private Switch switchRingtone;
 
