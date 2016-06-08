@@ -137,7 +137,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void playAlarm() {
-
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
         ringtone.play();
