@@ -25,6 +25,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 
@@ -64,6 +65,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        Toast.makeText(this, "Alarm has been activated.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
