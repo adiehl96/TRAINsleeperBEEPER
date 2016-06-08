@@ -35,7 +35,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,16 +46,20 @@
         </activity>
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".DistanceActivity">
+            android:name=".DistanceActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".AlarmActivity">
+            android:name=".AlarmActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".StationChoiceActivity">
+            android:name=".StationChoiceActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
