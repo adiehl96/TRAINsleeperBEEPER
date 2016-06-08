@@ -1,6 +1,9 @@
 package com.example.bestizer.gpsidea;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -33,7 +36,6 @@ public class StationChoiceActivity extends AppCompatActivity {
         getStationNames();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listStationNames);
         stationChoice.setAdapter(adapter);
-
     }
 
     private void getStationNames() {
