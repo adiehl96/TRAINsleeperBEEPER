@@ -19,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private Toast noInternetToast;
     private Toast noLocationPermissionToast;
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
     public void handleMapButton(View v) {
         if (hasFineLocationPermission()) {
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
@@ -40,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             if(!hasFineLocationPermission()) {
                 noLocationPermissionToast.show();
                 requestFineLocation();
+                handleTrainButton(v);
             } else if (!networkAvailable()) {
                 noInternetToast.show();
             }
