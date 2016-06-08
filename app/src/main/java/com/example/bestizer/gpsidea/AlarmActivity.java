@@ -58,7 +58,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
                     .addApi(LocationServices.API)
                     .build();
         }
-        new LocationSettingsRequest.Builder().addLocationRequest(createLocationRequest(););
+        new LocationSettingsRequest.Builder().addLocationRequest(createLocationRequest());
     }
 
     @Override
