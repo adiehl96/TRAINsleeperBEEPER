@@ -24,9 +24,13 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
         android:text="Please select your destination"
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal|top"
-        android:backgroundTint="#ffffff" />
+        android:backgroundTint="@color/background_material_dark"
+        android:autoText="true"
+        android:padding="@dimen/abc_control_padding_material"
+        android:textColor="@color/background_material_light"
+        android:background="@color/background_material_dark" />
 </FrameLayout>
