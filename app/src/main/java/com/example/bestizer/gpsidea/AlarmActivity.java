@@ -127,7 +127,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void updateAndCheck() {
-        distance.setText((int) (currentLocation.distanceTo(destination) / 1000) + " km");
+        distance.setText(String.format("%.1f km", currentLocation.distanceTo(destination) / 1000));
         if (currentLocation.distanceTo(destination) < destination.radius) {
             if (switchVibration.isChecked()) {
                 vibrate();
