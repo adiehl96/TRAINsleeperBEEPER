@@ -35,7 +35,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     public GoogleApiClient googleApiClient;
     private TextView distance;
     private Location currentLocation;
-    private Location lastLocation;
     private LocationRequest locationRequest;
     private model.AlarmLocation destination;
     private Ringtone ringtone = null;
