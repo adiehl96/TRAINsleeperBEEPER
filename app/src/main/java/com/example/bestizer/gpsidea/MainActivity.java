@@ -15,7 +15,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public static final int PERMISSIONS_REQUEST_LOCATION_ID = 97;
-    private Toast noInternetToast, noLocationPermissionToast;
+
+    private Toast noInternetToast;
+    private Toast noLocationPermissionToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
