@@ -45,20 +45,51 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     private Switch switchRingtone;
 
     @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        startLocationUpdates();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        currentLocation = location;
+        updateAndCheck();
+    }
+
+    public void cancelAlarm(View v) {
+        if (vibrator != null) {
+            vibrator.cancel();
+        }
+        if (ringtone != null) {
+            ringtone.stop();
+        }
+        Intent i = new Intent(AlarmActivity.this, MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
-        Intent intent = getIntent();
-        destination = intent.getParcelableExtra("model.AlarmLocation");
-        currentLocation = new Location("current");
+        destination = getIntent().getParcelableExtra("model.AlarmLocation");
         distance = (TextView) this.findViewById(R.id.textView);
         switchVibration = (Switch) this.findViewById(R.id.switchVibration);
         switchRingtone = (Switch) this.findViewById(R.id.switchRingtone);
         createGoogleApiClient();
         createLocationRequest();
         new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
+        ringtone = RingtoneManager.getRingtone(
+                getApplicationContext(),
+                RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+        );
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         Toast.makeText(this, "Alarm has been activated.", Toast.LENGTH_SHORT).show();
     }
@@ -72,19 +103,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onStop() {
         super.onStop();
         googleApiClient.disconnect();
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        startLocationUpdates();
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
 
     protected void createLocationRequest() {
@@ -104,24 +122,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
                     PERMISSIONS_REQUEST_LOCATION_ID
             );
         }
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        currentLocation = location;
-        updateAndCheck();
-    }
-
-    public void cancelAlarm(View v) {
-        if (vibrator != null) {
-            vibrator.cancel();
-        }
-        if (ringtone != null) {
-            ringtone.stop();
-        }
-        Intent i = new Intent(AlarmActivity.this, MainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
     }
 
     private void updateAndCheck() {
