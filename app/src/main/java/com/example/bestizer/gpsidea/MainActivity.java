@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         noInternetToast = Toast.makeText(this, "No Internet Connection available.", Toast.LENGTH_SHORT);
-        noLocationPermissionToast = Toast.makeText(this, "Location permission is required", Toast.LENGTH_SHORT);
+        noLocationPermissionToast = Toast.makeText(this, "Location permission is required.", Toast.LENGTH_SHORT);
         requestFineLocation();
 }
 
