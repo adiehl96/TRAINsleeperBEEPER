@@ -32,7 +32,7 @@
         android:text="Vibration"
         android:id="@+id/switchVibration"
         android:switchPadding="@dimen/abc_button_padding_horizontal_material"
-        android:checked="false"
+        android:checked="true"
         android:layout_above="@+id/button3"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin" />
@@ -43,7 +43,7 @@
         android:text="Ringtone"
         android:id="@+id/switchRingtone"
         android:switchPadding="@dimen/abc_button_padding_horizontal_material"
-        android:checked="false"
+        android:checked="true"
         android:layout_above="@+id/switchVibration"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin" />
