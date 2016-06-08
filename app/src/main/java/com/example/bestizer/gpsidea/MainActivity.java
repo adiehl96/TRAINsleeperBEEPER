@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         noInternetToast = Toast.makeText(this, "No Internet Connection available.", Toast.LENGTH_SHORT);
     }
 
-    private boolean isNetworkAvailable() {
+    private boolean networkAvailable() {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
 
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleTrainButton(View v) {
-        if(isNetworkAvailable()) {
+        if(networkAvailable()) {
             startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
         }
         else{
