@@ -44,7 +44,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel Alarm"
-        android:id="@+id/button3"
         android:onClick="cancelAlarm"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
