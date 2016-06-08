@@ -90,18 +90,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
 
-    public void checkpermission() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            lastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                    googleApiClient);
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_LOCATION_ID);
-
-        }
-    }
-
     protected void createLocationRequest() {
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(1000);
