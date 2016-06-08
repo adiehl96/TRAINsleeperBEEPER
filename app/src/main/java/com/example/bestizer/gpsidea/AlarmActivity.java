@@ -35,7 +35,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     public GoogleApiClient googleApiClient;
     private TextView distance;
     private Location currentLocation;
-    private LocationRequest locationRequest;
     private model.AlarmLocation destination;
     private Ringtone ringtone = null;
     private Vibrator vibrator = null;
@@ -59,10 +58,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
                     .addApi(LocationServices.API)
                     .build();
         }
-        locationRequest = new LocationRequest();
-        createLocationRequest();
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                .addLocationRequest(locationRequest);
+        new LocationSettingsRequest.Builder().addLocationRequest(createLocationRequest(););
     }
 
     @Override
@@ -89,11 +85,12 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
 
-    protected void createLocationRequest() {
-        locationRequest = LocationRequest.create();
+    protected LocationRequest createLocationRequest() {
+        LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setInterval(1000);
         locationRequest.setFastestInterval(800);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        return locationRequest;
     }
 
     protected void startLocationUpdates() {
