@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        noInternetToast = Toast.makeText(this, "No Internet Connection available", Toast.LENGTH_SHORT);
+        noInternetToast = Toast.makeText(this, "No Internet Connection available.", Toast.LENGTH_SHORT);
     }
 
     private boolean isNetworkAvailable() {
