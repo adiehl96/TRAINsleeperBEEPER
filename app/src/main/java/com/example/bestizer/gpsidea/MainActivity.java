@@ -65,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestFineLocation() {
-        ActivityCompat.requestPermissions(
-                this,
-                new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                PERMISSIONS_REQUEST_LOCATION_ID
-        );
+        if (!hasFineLocationPermission()) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_LOCATION_ID
+            );
+        }
     }
 
     private boolean networkAvailable() {
