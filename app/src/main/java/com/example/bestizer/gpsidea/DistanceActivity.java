@@ -13,6 +13,7 @@ import model.NamedLocation;
 
 public class DistanceActivity extends AppCompatActivity {
 
+    private static final int MIN_DISTANCE = 1;
     private static final int MAX_DISTANCE = 100;
 
     private NumberPicker distancePicker;
@@ -23,6 +24,7 @@ public class DistanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_distance);
         distancePicker = (NumberPicker) findViewById(R.id.distancePicker);
+        distancePicker.setMinValue(MIN_DISTANCE);
         distancePicker.setMaxValue(MAX_DISTANCE);
         namedLocation = getIntent().getParcelableExtra("model.NamedLocation");
     }
