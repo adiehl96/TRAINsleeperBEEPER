@@ -24,7 +24,7 @@ public class DistanceActivity extends AppCompatActivity {
         invalidDistanceToast = Toast.makeText(this, "You must enter a valid distance.", Toast.LENGTH_SHORT);
     }
 
-    public void onClick(View v) {
+    public void handleChooseButton(View v) {
         try {
             int distance = Integer.parseInt(distanceField.getText().toString()) * 1000;
             Intent intent = new Intent(DistanceActivity.this, AlarmActivity.class);
