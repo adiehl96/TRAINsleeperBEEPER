@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
         } else {
             if(!hasFineLocationPermission()) {
-                noInternetToast.show();
+                noLocationPermissionToast.show();
                 requestFineLocation();
             } else if (!networkAvailable()) {
                 noInternetToast.show();
