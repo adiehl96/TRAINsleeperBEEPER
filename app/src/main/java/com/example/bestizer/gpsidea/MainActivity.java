@@ -2,16 +2,19 @@ package com.example.bestizer.gpsidea;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toast noInternetToast;
+    public static final int PERMISSIONS_REQUEST_LOCATION_ID = 97;
+    private Toast noInternetToast,noLocationPermissionToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,36 @@ public class MainActivity extends AppCompatActivity {
         return isAvailable;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]==PackageManager.PERMISSION_GRANTED) {
+            startActivity(new Intent(MainActivity.this, MapsActivity.class));
+        }
+        else{
+            noLocationPermissionToast = Toast.makeText(this,"Location permission is required", Toast.LENGTH_SHORT);
+            noLocationPermissionToast.show();
+        }
+    }
+
+    private boolean checkPermission() {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        else {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_LOCATION_ID
+            );
+            return false;
+        }
+    }
+
     public void handleMapButton(View v) {
-        startActivity(new Intent(MainActivity.this, MapsActivity.class));
+        if(checkPermission()){
+            startActivity(new Intent(MainActivity.this, MapsActivity.class));
+        }
     }
 
     public void handleTrainButton(View v) {
