@@ -11,10 +11,13 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Toast noInternetToast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        noInternetToast = Toast.makeText(this, "No Internet Connection available", Toast.LENGTH_SHORT);
     }
 
     private boolean isNetworkAvailable() {
@@ -37,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
         }
         else{
-            Toast toast = Toast.makeText(this,"No Internet Connection available", Toast.LENGTH_SHORT);
-            toast.show();
+            noInternetToast.show();
         }
     }
 
