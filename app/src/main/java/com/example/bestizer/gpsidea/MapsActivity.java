@@ -67,7 +67,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double lon = NL_LON;
         checkPermission(map);
         LatLng custom = new LatLng(lat, lon);
-        map.addMarker(new MarkerOptions().position(custom).title("Marker in custom city"));
         map.moveCamera(CameraUpdateFactory.newLatLng(custom));
         map.animateCamera(CameraUpdateFactory.zoomTo(7.0f));
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {

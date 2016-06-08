@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please select your destination"
+        android:text="Tap to select your destination"
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal|top"
         android:padding="@dimen/abc_control_padding_material"
