@@ -53,13 +53,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         distance = (TextView) this.findViewById(R.id.textView);
         switchVibration = (Switch) this.findViewById(R.id.switchVibration);
         switchRingtone = (Switch) this.findViewById(R.id.switchRingtone);
-        if (googleApiClient == null) {
-            googleApiClient = new GoogleApiClient.Builder(this)
-                    .addConnectionCallbacks(this)
-                    .addOnConnectionFailedListener(this)
-                    .addApi(LocationServices.API)
-                    .build();
-        }
+        createGoogleApiClient();
         createLocationRequest();
         new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
@@ -139,6 +133,16 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
             if (switchRingtone.isChecked()) {
                 ringtone.play();
             }
+        }
+    }
+
+    private void createGoogleApiClient() {
+        if (googleApiClient == null) {
+            googleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
         }
     }
 
