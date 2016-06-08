@@ -29,5 +29,6 @@
         android:layout_gravity="center_horizontal|top"
         android:padding="@dimen/abc_control_padding_material"
         android:textColor="@color/background_material_light"
-        android:background="@color/background_material_dark" />
+        android:background="@color/background_material_dark"
+        android:layout_marginTop="@dimen/activity_vertical_margin" />
 </FrameLayout>
