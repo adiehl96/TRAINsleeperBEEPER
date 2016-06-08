@@ -30,16 +30,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleMapButton(View v) {
-        if (checkPermission()) {
+        if (hasFineLocationPermission()) {
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
+        } else {
+            noLocationPermissionToast.show();
+            requestFineLocation();
         }
     }
 
     public void handleTrainButton(View v) {
-        if (networkAvailable()) {
+        if (networkAvailable() && hasFineLocationPermission()) {
             startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
         } else {
-            noInternetToast.show();
+            if(!hasFineLocationPermission()) {
+                noInternetToast.show();
+                requestFineLocation();
+            } else if (!networkAvailable()) {
+                noInternetToast.show();
+            }
         }
     }
 
@@ -49,19 +57,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         noInternetToast = Toast.makeText(this, "No Internet Connection available.", Toast.LENGTH_SHORT);
         noLocationPermissionToast = Toast.makeText(this, "Location permission is required", Toast.LENGTH_SHORT);
+        requestFineLocation();
+}
+
+    private boolean hasFineLocationPermission() {
+        return ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
-    private boolean checkPermission() {
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_LOCATION_ID
-            );
-            return false;
-        }
+    private void requestFineLocation() {
+        ActivityCompat.requestPermissions(
+                this,
+                new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                PERMISSIONS_REQUEST_LOCATION_ID
+        );
     }
 
     private boolean networkAvailable() {
