@@ -23,7 +23,6 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -46,7 +45,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alarm);
+        setContentView(R.layout.activity_alarm);
         Intent intent = getIntent();
         destination = intent.getParcelableExtra("model.AlarmLocation");
         currentLocation = new Location("current");
