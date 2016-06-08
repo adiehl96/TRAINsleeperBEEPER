@@ -39,6 +39,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     private model.AlarmLocation destination;
     private Ringtone ringtone;
     private Vibrator vibrator;
+    private long[] pattern = {0, 1000, 1000};
     private Switch switchVibration;
     private Switch switchRingtone;
 
@@ -61,6 +62,9 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         }
         createLocationRequest();
         new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     @Override
@@ -129,24 +133,12 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         distance.setText(String.format("%.1f km", dist / 1000));
         if (dist < destination.radius) {
             if (switchVibration.isChecked()) {
-                vibrate();
+                vibrator.vibrate(pattern, 0);
             }
             if (switchRingtone.isChecked()) {
-                playAlarm();
+                ringtone.play();
             }
         }
-    }
-
-    private void playAlarm() {
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        ringtone = RingtoneManager.getRingtone(getApplicationContext(), notification);
-        ringtone.play();
-    }
-
-    private void vibrate() {
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        long[] pattern = {0, 100, 1000};
-        vibrator.vibrate(pattern, 0);
     }
 
 }
