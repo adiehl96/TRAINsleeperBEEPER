@@ -19,6 +19,12 @@ public class DistanceActivity extends AppCompatActivity {
     private NumberPicker distancePicker;
     private NamedLocation namedLocation;
 
+    public void handleChooseButton(View v) {
+        Intent intent = new Intent(DistanceActivity.this, AlarmActivity.class);
+        intent.putExtra("model.AlarmLocation", new AlarmLocation(namedLocation, distancePicker.getValue() * 1000));
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +33,6 @@ public class DistanceActivity extends AppCompatActivity {
         distancePicker.setMinValue(MIN_DISTANCE);
         distancePicker.setMaxValue(MAX_DISTANCE);
         namedLocation = getIntent().getParcelableExtra("model.NamedLocation");
-    }
-
-    public void handleChooseButton(View v) {
-        Intent intent = new Intent(DistanceActivity.this, AlarmActivity.class);
-        intent.putExtra("model.AlarmLocation", new AlarmLocation(namedLocation, distancePicker.getValue() * 1000));
-        startActivity(intent);
     }
 
 }
