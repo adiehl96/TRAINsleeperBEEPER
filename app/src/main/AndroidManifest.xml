@@ -55,7 +55,8 @@
         </activity>
         <activity
             android:name=".AlarmActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat">
         </activity>
         <activity
             android:name=".StationChoiceActivity"
