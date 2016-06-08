@@ -1,0 +1,7 @@
+Uitleg over designkeuzes
+
+
+-We hebben ervoor gekozen om geen alarmservice te gebruiken, omdat er altijd de mogelijkheid bestaat dat dit process door android wordt gesloten. Het is cruciaal voor onze app dat de alarm niet wordt gesloten.
+
+
+-In tegenstelling tot de themes van onze andere activities hebben wij voor de AlarmActivity een zwarte achtergrond gekozen,  om oogklachten te verkomen.
