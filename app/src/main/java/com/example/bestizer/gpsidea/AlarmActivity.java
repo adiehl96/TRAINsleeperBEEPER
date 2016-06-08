@@ -123,6 +123,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
             ringtone.stop();
         }
         Intent i = new Intent(AlarmActivity.this, MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
 
