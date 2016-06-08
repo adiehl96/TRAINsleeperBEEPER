@@ -14,13 +14,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public static final int PERMISSIONS_REQUEST_LOCATION_ID = 97;
-    private Toast noInternetToast,noLocationPermissionToast;
+    private Toast noInternetToast, noLocationPermissionToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         noInternetToast = Toast.makeText(this, "No Internet Connection available.", Toast.LENGTH_SHORT);
+        noLocationPermissionToast = Toast.makeText(this, "Location permission is required", Toast.LENGTH_SHORT);
     }
 
     private boolean networkAvailable() {
@@ -37,11 +38,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(grantResults[0]==PackageManager.PERMISSION_GRANTED) {
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
-        }
-        else{
-            noLocationPermissionToast = Toast.makeText(this,"Location permission is required", Toast.LENGTH_SHORT);
+        } else {
             noLocationPermissionToast.show();
         }
     }
@@ -49,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean checkPermission() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             return true;
-        }
-        else {
+        } else {
             ActivityCompat.requestPermissions(
                     this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
@@ -61,16 +59,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleMapButton(View v) {
-        if(checkPermission()){
+        if (checkPermission()) {
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
         }
     }
 
     public void handleTrainButton(View v) {
-        if(networkAvailable()) {
+        if (networkAvailable()) {
             startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
-        }
-        else{
+        } else {
             noInternetToast.show();
         }
     }
