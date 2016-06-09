@@ -105,4 +105,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void handleFailedStart(int id) {
+        if (!hasFineLocationPermission()) {
+            noLocationPermissionToast.show();
+            requestFineLocation(id);
+        } else if (!networkAvailable()) {
+            noInternetToast.show();
+        }
+    }
+
+
 }
