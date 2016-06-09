@@ -41,7 +41,6 @@ public class UrlBackgroundTask extends AsyncTask<URLConnection, Void, Document> 
 
     @Override
     protected Document doInBackground(URLConnection... params) {
-        Document doc = parse(params[0]);
-        return doc;
+        return parse(params[0]);
     }
 }
