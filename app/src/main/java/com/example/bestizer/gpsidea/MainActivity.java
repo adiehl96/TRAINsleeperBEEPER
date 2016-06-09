@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     tryTrainActivity();
                     break;
                 case PERMISSIONS_REQUEST_LOCATION_ID_MAP:
-                    // tryMapsActivity();
+                    tryMapsActivity();
                     break;
             }
         } else {
@@ -90,6 +90,15 @@ public class MainActivity extends AppCompatActivity {
     private boolean tryTrainActivity() {
         if (networkAvailable() && hasFineLocationPermission()) {
             startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean tryMapsActivity() {
+        if (networkAvailable() && hasFineLocationPermission()) {
+            startActivity(new Intent(MainActivity.this, MapsActivity.class));
             return true;
         } else {
             return false;
