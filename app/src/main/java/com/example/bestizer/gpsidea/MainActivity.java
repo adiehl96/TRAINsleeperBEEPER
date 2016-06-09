@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean tryMapsActivity() {
-        if (networkAvailable() && hasFineLocationPermission()) {
+        if (hasFineLocationPermission()) {
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
             return true;
         }
