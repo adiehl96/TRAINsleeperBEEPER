@@ -44,18 +44,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSIONS_REQUEST_LOCATION_ID_TRAIN) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
-            } else {
-                noLocationPermissionToast.show();
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            switch (requestCode) {
+                case PERMISSIONS_REQUEST_LOCATION_ID_TRAIN:
+                    tryTrainActivity();
+                    break;
+                case PERMISSIONS_REQUEST_LOCATION_ID_MAP:
+                    // tryMapsActivity();
+                    break;
             }
-        } else if (requestCode == PERMISSIONS_REQUEST_LOCATION_ID_MAP) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startActivity(new Intent(MainActivity.this, MapsActivity.class));
-            } else {
-                noLocationPermissionToast.show();
-            }
+        } else {
+            noLocationPermissionToast.show();
         }
     }
 
