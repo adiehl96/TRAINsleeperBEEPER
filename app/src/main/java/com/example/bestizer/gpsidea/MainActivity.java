@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleTrainButton(View v) {
         if (!tryTrainActivity()) {
-            if(!hasFineLocationPermission()) {
+            if (!hasFineLocationPermission()) {
                 noLocationPermissionToast.show();
                 requestFineLocation(PERMISSIONS_REQUEST_LOCATION_ID_TRAIN);
             } else if (!networkAvailable()) {
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         noInternetToast = Toast.makeText(this, "No Internet Connection available.", Toast.LENGTH_SHORT);
         noLocationPermissionToast = Toast.makeText(this, "Location permission is required.", Toast.LENGTH_SHORT);
         requestFineLocation(PERMISSIONS_REQUEST_LOCATION_ID_INITIAL);
-}
+    }
 
     private boolean hasFineLocationPermission() {
         return ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
