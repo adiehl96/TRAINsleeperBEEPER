@@ -32,12 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleTrainButton(View v) {
         if (!tryTrainActivity()) {
-            if (!hasFineLocationPermission()) {
-                noLocationPermissionToast.show();
-                requestFineLocation(PERMISSIONS_REQUEST_LOCATION_ID_TRAIN);
-            } else if (!networkAvailable()) {
-                noInternetToast.show();
-            }
+            handleFailedStart(PERMISSIONS_REQUEST_LOCATION_ID_TRAIN);
         }
     }
 
