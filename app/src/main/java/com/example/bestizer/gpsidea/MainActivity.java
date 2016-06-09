@@ -83,18 +83,16 @@ public class MainActivity extends AppCompatActivity {
         if (networkAvailable() && hasFineLocationPermission()) {
             startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     private boolean tryMapsActivity() {
         if (networkAvailable() && hasFineLocationPermission()) {
             startActivity(new Intent(MainActivity.this, MapsActivity.class));
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     private void handleFailedStart(int id) {
