@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleTrainButton(View v) {
-        if (!tryMapsActivity()) {
+        if (!tryTrainActivity()) {
             if(!hasFineLocationPermission()) {
                 noLocationPermissionToast.show();
                 requestFineLocation(PERMISSIONS_REQUEST_LOCATION_ID_TRAIN);
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         return networkInfo != null && networkInfo.isConnected();
     }
 
-    private boolean tryMapsActivity() {
+    private boolean tryTrainActivity() {
         if (networkAvailable() && hasFineLocationPermission()) {
             startActivity(new Intent(MainActivity.this, StationChoiceActivity.class));
             return true;
