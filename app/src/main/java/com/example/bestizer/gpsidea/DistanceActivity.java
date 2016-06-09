@@ -11,6 +11,12 @@ import android.widget.Toast;
 import model.AlarmLocation;
 import model.NamedLocation;
 
+/**
+ * @author Hendrik Werner
+ * @author Jasper Haasdijk
+ * @author Janne van Den Hout
+ * @author Arne Diehl
+ */
 public class DistanceActivity extends AppCompatActivity {
 
     private static final int MIN_DISTANCE = 1;

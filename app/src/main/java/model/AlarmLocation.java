@@ -3,7 +3,10 @@ package model;
 import android.os.Parcel;
 
 /**
- * Created by Hendrik Werner.
+ * @author Hendrik Werner
+ * @author Jasper Haasdijk
+ * @author Janne van Den Hout
+ * @author Arne Diehl
  */
 public class AlarmLocation extends NamedLocation {
 

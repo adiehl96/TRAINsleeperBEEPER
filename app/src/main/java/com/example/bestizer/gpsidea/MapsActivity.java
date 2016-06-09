@@ -23,6 +23,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import model.NamedLocation;
 
+/**
+ * @author Hendrik Werner
+ * @author Jasper Haasdijk
+ * @author Janne van Den Hout
+ * @author Arne Diehl
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     public static final int PERMISSIONS_REQUEST_LOCATION_ID = 99;

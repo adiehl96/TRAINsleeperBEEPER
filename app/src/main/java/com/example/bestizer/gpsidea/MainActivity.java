@@ -12,6 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+/**
+ * @author Hendrik Werner
+ * @author Jasper Haasdijk
+ * @author Janne van Den Hout
+ * @author Arne Diehl
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static final int PERMISSIONS_REQUEST_LOCATION_ID_INITIAL = 97;

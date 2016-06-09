@@ -14,7 +14,10 @@ import javax.xml.parsers.ParserConfigurationException;
 
 
 /**
- * Created by arned on 6/6/2016.
+ * @author Hendrik Werner
+ * @author Jasper Haasdijk
+ * @author Janne van Den Hout
+ * @author Arne Diehl
  */
 public class UrlBackgroundTask extends AsyncTask<URLConnection, Void, Document> {
 

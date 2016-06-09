@@ -28,6 +28,12 @@ import com.google.android.gms.location.LocationSettingsRequest;
 
 import model.AlarmLocation;
 
+/**
+ * @author Hendrik Werner
+ * @author Jasper Haasdijk
+ * @author Janne van Den Hout
+ * @author Arne Diehl
+ */
 public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private static final int PERMISSIONS_REQUEST_LOCATION_ID = 98;

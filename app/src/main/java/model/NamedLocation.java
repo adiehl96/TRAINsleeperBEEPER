@@ -6,6 +6,9 @@ import android.os.Parcelable;
 
 /**
  * @author Hendrik Werner
+ * @author Jasper Haasdijk
+ * @author Janne van Den Hout
+ * @author Arne Diehl
  */
 public class NamedLocation extends Location {
 

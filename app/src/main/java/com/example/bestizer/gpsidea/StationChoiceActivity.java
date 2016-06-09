@@ -19,6 +19,12 @@ import model.NamedLocation;
 import model.NamedLocationProvider;
 import model.NsApiParser;
 
+/**
+ * @author Hendrik Werner
+ * @author Jasper Haasdijk
+ * @author Janne van Den Hout
+ * @author Arne Diehl
+ */
 public class StationChoiceActivity extends AppCompatActivity {
 
     private NamedLocationProvider parser;

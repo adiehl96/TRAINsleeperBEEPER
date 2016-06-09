@@ -14,7 +14,10 @@ import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by Hendrik Werner
+ * @author Hendrik Werner
+ * @author Jasper Haasdijk
+ * @author Janne van Den Hout
+ * @author Arne Diehl
  */
 public class NsApiParser implements NamedLocationProvider {
 
