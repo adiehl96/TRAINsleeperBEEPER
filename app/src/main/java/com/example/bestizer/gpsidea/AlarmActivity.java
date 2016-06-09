@@ -96,7 +96,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
                 RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         );
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        Toast.makeText(this, "Alarm has been activated.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Alarm is active now.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
