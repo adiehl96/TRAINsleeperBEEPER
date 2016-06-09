@@ -22,11 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private Toast noLocationPermissionToast;
 
     public void handleMapButton(View v) {
-        if (hasFineLocationPermission()) {
-            startActivity(new Intent(MainActivity.this, MapsActivity.class));
-        } else {
-            noLocationPermissionToast.show();
-            requestFineLocation(PERMISSIONS_REQUEST_LOCATION_ID_MAP);
+        if (!tryMapsActivity()) {
+            handleFailedStart(PERMISSIONS_REQUEST_LOCATION_ID_MAP);
         }
     }
 
