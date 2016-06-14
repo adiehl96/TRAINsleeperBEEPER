@@ -1,4 +1,4 @@
-package com.example.bestizer.gpsidea;
+package com.trainsleeperbeeper;
 
 import android.Manifest;
 import android.content.Intent;

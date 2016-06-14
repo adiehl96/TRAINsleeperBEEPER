@@ -7,7 +7,7 @@
     https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=3D:AF:04:30:A0:49:B8:03:9A:D5:16:5A:24:19:F8:D3:EB:7A:5E:99%3Bcom.example.bestizer.gpsidea
 
     You can also add your credentials to an existing key, using this line:
-    3D:AF:04:30:A0:49:B8:03:9A:D5:16:5A:24:19:F8:D3:EB:7A:5E:99;com.example.bestizer.gpsidea
+    3D:AF:04:30:A0:49:B8:03:9A:D5:16:5A:24:19:F8:D3:EB:7A:5E:99;com.trainsleeperbeeper
 
     Alternatively, follow the directions here:
     https://developers.google.com/maps/documentation/android/start#get-key
