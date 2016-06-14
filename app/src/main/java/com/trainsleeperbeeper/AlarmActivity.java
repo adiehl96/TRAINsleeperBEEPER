@@ -105,6 +105,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         googleApiClient.connect();
     }
 
+    @Override
     protected void onStop() {
         super.onStop();
         googleApiClient.disconnect();
