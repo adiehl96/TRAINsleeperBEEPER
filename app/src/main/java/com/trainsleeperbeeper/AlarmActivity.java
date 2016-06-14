@@ -72,9 +72,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         if (vibrator != null) {
             vibrator.cancel();
         }
-        if (ringtone != null) {
-            ringtone.stop();
-        }
+        deactivateRingtone();
         Intent i = new Intent(AlarmActivity.this, MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
@@ -150,6 +148,12 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
+        }
+    }
+
+    private void deactivateRingtone() {
+        if (ringtone != null) {
+            ringtone.stop();
         }
     }
 
