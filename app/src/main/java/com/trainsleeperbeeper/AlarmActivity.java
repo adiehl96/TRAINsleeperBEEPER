@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,6 +93,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
                 RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
         );
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        registerHandlers();
         Toast.makeText(this, "Alarm is active now.", Toast.LENGTH_SHORT).show();
     }
 
@@ -159,6 +161,25 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         if (vibrator != null) {
             vibrator.cancel();
         }
+    }
+
+    private void registerHandlers() {
+        switchRingtone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                if (!checked) {
+                    deactivateRingtone();
+                }
+            }
+        });
+        switchVibration.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                if (!checked) {
+                    deactivateVibration();
+                }
+            }
+        });
     }
 
 }
