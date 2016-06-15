@@ -70,8 +70,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     public void cancelAlarm(View v) {
-        ringtone.stop();
-        vibrator.cancel();
         Intent i = new Intent(AlarmActivity.this, MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
@@ -107,6 +105,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onStop() {
         super.onStop();
         googleApiClient.disconnect();
+        ringtone.stop();
+        vibrator.cancel();
     }
 
     protected void createLocationRequest() {
