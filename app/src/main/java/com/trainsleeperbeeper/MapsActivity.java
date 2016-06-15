@@ -32,6 +32,7 @@ import model.NamedLocation;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     public static final int PERMISSIONS_REQUEST_LOCATION_ID = 99;
+    private static final float INITIAL_ZOOM = 7.0f;
     private static final LatLng INITIAL_LAT_LNG = new LatLng(52.2333333, 5.66666667);
 
     private GoogleApiClient googleApiClient;
@@ -70,7 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(final GoogleMap map) {
         checkPermission(map);
         map.moveCamera(CameraUpdateFactory.newLatLng(INITIAL_LAT_LNG));
-        map.animateCamera(CameraUpdateFactory.zoomTo(7.0f));
+        map.animateCamera(CameraUpdateFactory.zoomTo(INITIAL_ZOOM));
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng point) {
