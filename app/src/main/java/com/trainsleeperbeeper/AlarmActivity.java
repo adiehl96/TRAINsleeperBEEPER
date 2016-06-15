@@ -70,8 +70,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     public void cancelAlarm(View v) {
-        deactivateVibration();
-        deactivateRingtone();
+        ringtone.stop();
+        vibrator.cancel();
         Intent i = new Intent(AlarmActivity.this, MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
@@ -151,24 +151,12 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    private void deactivateRingtone() {
-        if (ringtone != null) {
-            ringtone.stop();
-        }
-    }
-
-    private void deactivateVibration() {
-        if (vibrator != null) {
-            vibrator.cancel();
-        }
-    }
-
     private void registerHandlers() {
         switchRingtone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
                 if (!checked) {
-                    deactivateRingtone();
+                    ringtone.stop();
                 }
             }
         });
@@ -176,7 +164,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
                 if (!checked) {
-                    deactivateVibration();
+                    vibrator.cancel();
                 }
             }
         });
