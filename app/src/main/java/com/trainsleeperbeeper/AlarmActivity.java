@@ -112,7 +112,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     protected void createLocationRequest() {
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(1000);
-        locationRequest.setFastestInterval(800);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
