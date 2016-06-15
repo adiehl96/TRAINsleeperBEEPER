@@ -107,6 +107,8 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onStop() {
         super.onStop();
         googleApiClient.disconnect();
+        ringtone.stop();
+        vibrator.cancel();
     }
 
     protected void createLocationRequest() {
