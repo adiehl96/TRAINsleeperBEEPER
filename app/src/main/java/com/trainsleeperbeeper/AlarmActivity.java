@@ -70,8 +70,6 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     public void cancelAlarm(View v) {
-        deactivateVibration();
-        deactivateRingtone();
         Intent i = new Intent(AlarmActivity.this, MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
