@@ -38,20 +38,7 @@ public class StationChoiceActivity extends AppCompatActivity {
         listNamedLocation = (List<NamedLocation>) parser.getLocations();
         listStationNames = new ArrayList<>();
         getStationNames();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listStationNames);
-        stationChoice.setAdapter(adapter);
-        stationChoice.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                        handleChooseButton(v);
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
+        setupStationChoice();
     }
 
     private void getStationNames() {
@@ -67,6 +54,23 @@ public class StationChoiceActivity extends AppCompatActivity {
             }
         }
         return null;
+    }
+
+    private void setupStationChoice() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listStationNames);
+        stationChoice.setAdapter(adapter);
+        stationChoice.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                        handleChooseButton(v);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     private void handleChooseButton(View v) {
