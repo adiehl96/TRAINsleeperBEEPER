@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.NamedLocation;
-import model.NamedLocationProvider;
 import model.NsApiParser;
 
 /**
