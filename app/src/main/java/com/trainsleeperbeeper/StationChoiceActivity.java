@@ -33,8 +33,7 @@ public class StationChoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_station_choice);
         stationChoice = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         namedLocations = (List<NamedLocation>) new NsApiParser().getLocations();
-        stationNames = new ArrayList<>();
-        getStationNames();
+        setupStationNames();
         setupStationChoice();
     }
 
@@ -51,7 +50,8 @@ public class StationChoiceActivity extends AppCompatActivity {
         }
     }
 
-    private void getStationNames() {
+    private void setupStationNames() {
+        stationNames = new ArrayList<>();
         for (NamedLocation location : namedLocations) {
             stationNames.add(location.name);
         }
