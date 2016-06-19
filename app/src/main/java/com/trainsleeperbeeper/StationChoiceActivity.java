@@ -67,7 +67,7 @@ public class StationChoiceActivity extends AppCompatActivity {
         return null;
     }
 
-    public void handleChooseButton(View v) {
+    private void handleChooseButton(View v) {
         String enteredName = stationChoice.getText().toString();
         NamedLocation nl = findLocation(enteredName);
         if (nl == null) {
