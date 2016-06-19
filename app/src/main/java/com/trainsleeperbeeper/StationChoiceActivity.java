@@ -24,17 +24,17 @@ import model.NsApiParser;
  */
 public class StationChoiceActivity extends AppCompatActivity {
 
-    private List<NamedLocation> listNamedLocation;
+    private List<NamedLocation> namedLocations;
     private AutoCompleteTextView stationChoice;
-    private List<String> listStationNames;
+    private List<String> stationNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_choice);
         stationChoice = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
-        listNamedLocation = (List<NamedLocation>) new NsApiParser().getLocations();
-        listStationNames = new ArrayList<>();
+        namedLocations = (List<NamedLocation>) new NsApiParser().getLocations();
+        stationNames = new ArrayList<>();
         getStationNames();
         setupStationChoice();
     }
@@ -53,13 +53,13 @@ public class StationChoiceActivity extends AppCompatActivity {
     }
 
     private void getStationNames() {
-        for (NamedLocation location : listNamedLocation) {
-            listStationNames.add(location.name);
+        for (NamedLocation location : namedLocations) {
+            stationNames.add(location.name);
         }
     }
 
     private NamedLocation findLocation(String stationName) {
-        for (NamedLocation location : listNamedLocation) {
+        for (NamedLocation location : namedLocations) {
             if (location.name.equals(stationName)) {
                 return location;
             }
@@ -68,7 +68,7 @@ public class StationChoiceActivity extends AppCompatActivity {
     }
 
     private void setupStationChoice() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listStationNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stationNames);
         stationChoice.setAdapter(adapter);
         stationChoice.setOnKeyListener(new View.OnKeyListener() {
             @Override
