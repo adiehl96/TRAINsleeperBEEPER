@@ -24,7 +24,6 @@ import model.NsApiParser;
  */
 public class StationChoiceActivity extends AppCompatActivity {
 
-    private NamedLocationProvider parser;
     private List<NamedLocation> listNamedLocation;
     private AutoCompleteTextView stationChoice;
     private List<String> listStationNames;
@@ -34,8 +33,7 @@ public class StationChoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_choice);
         stationChoice = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
-        parser = new NsApiParser();
-        listNamedLocation = (List<NamedLocation>) parser.getLocations();
+        listNamedLocation = (List<NamedLocation>) new NsApiParser().getLocations();
         listStationNames = new ArrayList<>();
         getStationNames();
         setupStationChoice();
