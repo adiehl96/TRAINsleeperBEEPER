@@ -39,6 +39,19 @@ public class StationChoiceActivity extends AppCompatActivity {
         setupStationChoice();
     }
 
+    protected void handleChooseButton(View v) {
+        String enteredName = stationChoice.getText().toString();
+        NamedLocation nl = findLocation(enteredName);
+        if (nl == null) {
+            Toast toast = Toast.makeText(this, String.format("%s is not a station.", enteredName), Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            Intent intent = new Intent(StationChoiceActivity.this, DistanceActivity.class);
+            intent.putExtra("model.NamedLocation", nl);
+            startActivity(intent);
+        }
+    }
+
     private void getStationNames() {
         for (NamedLocation location : listNamedLocation) {
             listStationNames.add(location.name);
@@ -69,19 +82,6 @@ public class StationChoiceActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
-
-    private void handleChooseButton(View v) {
-        String enteredName = stationChoice.getText().toString();
-        NamedLocation nl = findLocation(enteredName);
-        if (nl == null) {
-            Toast toast = Toast.makeText(this, String.format("%s is not a station.", enteredName), Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            Intent intent = new Intent(StationChoiceActivity.this, DistanceActivity.class);
-            intent.putExtra("model.NamedLocation", nl);
-            startActivity(intent);
-        }
     }
 
 }
