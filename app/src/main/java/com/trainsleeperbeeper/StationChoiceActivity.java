@@ -27,17 +27,7 @@ public class StationChoiceActivity extends AppCompatActivity {
     private AutoCompleteTextView stationChoice;
     private List<String> stationNames;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_station_choice);
-        stationChoice = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
-        namedLocations = (List<NamedLocation>) new NsApiParser().getLocations();
-        setupStationNames();
-        setupStationChoice();
-    }
-
-    protected void handleChooseButton(View v) {
+    public void handleChooseButton(View v) {
         String enteredName = stationChoice.getText().toString();
         NamedLocation nl = findLocation(enteredName);
         if (nl == null) {
@@ -48,6 +38,16 @@ public class StationChoiceActivity extends AppCompatActivity {
             intent.putExtra("model.NamedLocation", nl);
             startActivity(intent);
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_station_choice);
+        stationChoice = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+        namedLocations = (List<NamedLocation>) new NsApiParser().getLocations();
+        setupStationNames();
+        setupStationChoice();
     }
 
     private void setupStationNames() {
