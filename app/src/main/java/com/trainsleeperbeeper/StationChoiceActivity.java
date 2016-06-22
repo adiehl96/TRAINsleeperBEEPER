@@ -23,6 +23,7 @@ import model.NsApiParser;
  */
 public class StationChoiceActivity extends AppCompatActivity {
 
+    private String toastFormat;
     private List<NamedLocation> namedLocations;
     private AutoCompleteTextView stationChoice;
     private List<String> stationNames;
@@ -31,7 +32,7 @@ public class StationChoiceActivity extends AppCompatActivity {
         String enteredName = stationChoice.getText().toString();
         NamedLocation nl = findLocation(enteredName);
         if (nl == null) {
-            Toast.makeText(this, String.format("%s is not a station.", enteredName), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, String.format(toastFormat, enteredName), Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(StationChoiceActivity.this, DistanceActivity.class);
             intent.putExtra("model.NamedLocation", nl);
@@ -45,6 +46,7 @@ public class StationChoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_station_choice);
         stationChoice = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         namedLocations = (List<NamedLocation>) new NsApiParser().getLocations();
+        toastFormat = getString(R.string.not_a_station_toast);
         setupStationNames();
         setupStationChoice();
     }

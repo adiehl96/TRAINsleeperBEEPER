@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tap to select your destination"
+        android:text="@string/activity_maps_location_selection_help_text"
         android:layout_gravity="center_horizontal|top"
         android:padding="@dimen/abc_control_padding_material"
         android:textColor="@color/background_material_light"

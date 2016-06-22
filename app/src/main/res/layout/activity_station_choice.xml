@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter your final destination"
+        android:text="@string/activity_station_choice_header"
         android:focusableInTouchMode="true"
         android:textSize="@dimen/abc_text_size_headline_material"
         android:textColor="@color/abc_primary_text_material_light"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/autoCompleteTextView"
         android:singleLine="true"
-        android:hint="Station Name "
+        android:hint="@string/station_name_placeholder"
         android:layout_marginBottom="100dp" />
 
     <Button

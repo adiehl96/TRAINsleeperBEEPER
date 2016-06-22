@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Enter the desired distance in km"
+        android:text="@string/activity_distance_header"
         android:textSize="@dimen/abc_text_size_headline_material"
         android:textColor="@color/abc_primary_text_material_light"
         android:textAlignment="center" />
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="The alarm will be triggered when you are closer to your destination than this distance."
+        android:text="@string/activity_distance_number_picker_help_text"
         android:textAlignment="center"
         android:layout_marginTop="@dimen/activity_vertical_margin" />
 

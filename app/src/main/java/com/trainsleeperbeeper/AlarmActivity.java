@@ -40,6 +40,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
     private static final int PERMISSIONS_REQUEST_LOCATION_ID = 98;
     private static final long[] VIBRATION_PATTERN = {0, 1000, 1000};
 
+    private String distanceFormat;
     private GoogleApiClient googleApiClient;
     private TextView distance;
     private Location currentLocation;
@@ -83,6 +84,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         distance = (TextView) this.findViewById(R.id.distanceText);
         switchVibration = (Switch) this.findViewById(R.id.switchVibration);
         switchRingtone = (Switch) this.findViewById(R.id.switchRingtone);
+        distanceFormat = getString(R.string.activity_alarm_distance_format);
         createGoogleApiClient();
         createLocationRequest();
         new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
@@ -92,7 +94,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
         );
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         registerHandlers();
-        Toast.makeText(this, "Alarm is active now.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.alarm_active_toast, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -129,7 +131,7 @@ public class AlarmActivity extends AppCompatActivity implements GoogleApiClient.
 
     private void updateAndCheck() {
         float dist = currentLocation.distanceTo(destination);
-        distance.setText(String.format("Remaining Distance\n%.1f km", dist / 1000));
+        distance.setText(String.format(distanceFormat, dist / 1000));
         if (dist < destination.radius) {
             if (switchVibration.isChecked()) {
                 vibrator.vibrate(VIBRATION_PATTERN, 0);

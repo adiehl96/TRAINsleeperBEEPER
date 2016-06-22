@@ -96,7 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void handleChooseButton(View v) {
-        NamedLocation nl = new NamedLocation("Map location");
+        NamedLocation nl = new NamedLocation(getString(R.string.activity_maps_default_location_name));
         nl.setLatitude(latitude);
         nl.setLongitude(longitude);
         Intent i = new Intent(MapsActivity.this, DistanceActivity.class);

@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">TRAINsleeperBEEPER</string>
     <string name="title_activity_maps">Map</string>
+    <string name="activity_maps_location_selection_help_text">Tap to select your destination.</string>
+    <string name="activity_station_choice_header">Enter your final destination</string>
+    <string name="station_name_placeholder">Station Name</string>
+    <string name="activity_distance_header">Enter the desired distance in km</string>
+    <string name="activity_distance_number_picker_help_text">The alarm will be triggered when you are closer to your destination than this distance.</string>
+    <string name="activity_alarm_distance_format">Remaining Distance\n%.1f km</string>
+    <string name="alarm_active_toast">Alarm is active now.</string>
+    <string name="no_internet_toast">No Internet Connection available.</string>
+    <string name="no_location_toast">Location permission is required.</string>
+    <string name="activity_maps_default_location_name">Google Maps Location</string>
+    <string name="not_a_station_toast">%s is not a station.</string>
 </resources>
