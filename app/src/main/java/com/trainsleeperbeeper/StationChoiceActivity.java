@@ -31,8 +31,7 @@ public class StationChoiceActivity extends AppCompatActivity {
         String enteredName = stationChoice.getText().toString();
         NamedLocation nl = findLocation(enteredName);
         if (nl == null) {
-            Toast toast = Toast.makeText(this, String.format("%s is not a station.", enteredName), Toast.LENGTH_SHORT);
-            toast.show();
+            Toast.makeText(this, String.format("%s is not a station.", enteredName), Toast.LENGTH_SHORT).show();
         } else {
             Intent intent = new Intent(StationChoiceActivity.this, DistanceActivity.class);
             intent.putExtra("model.NamedLocation", nl);
