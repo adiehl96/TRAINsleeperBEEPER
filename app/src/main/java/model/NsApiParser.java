@@ -31,8 +31,6 @@ public class NsApiParser implements NamedLocationProvider {
     private static URLConnection generateURLConnection() {
         try {
             return new URL(PROTOCOL, HOST, ENDPOINT).openConnection();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
