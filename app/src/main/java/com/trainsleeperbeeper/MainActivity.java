@@ -20,9 +20,9 @@ import android.widget.Toast;
  */
 public class MainActivity extends AppCompatActivity {
 
-    public static final int PERMISSIONS_REQUEST_LOCATION_ID_INITIAL = 97;
-    public static final int PERMISSIONS_REQUEST_LOCATION_ID_TRAIN = 96;
-    public static final int PERMISSIONS_REQUEST_LOCATION_ID_MAP = 95;
+    private static final int PERMISSIONS_REQUEST_LOCATION_ID_INITIAL = 97;
+    private static final int PERMISSIONS_REQUEST_LOCATION_ID_TRAIN = 96;
+    private static final int PERMISSIONS_REQUEST_LOCATION_ID_MAP = 95;
 
     private Toast noInternetToast;
     private Toast noLocationPermissionToast;
