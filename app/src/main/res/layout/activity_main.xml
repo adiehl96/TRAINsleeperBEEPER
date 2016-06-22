@@ -11,13 +11,15 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/train"
-        android:onClick="handleTrainButton" />
+        android:onClick="handleTrainButton"
+        android:contentDescription="@string/activity_main_trainicon_content_description" />
 
     <ImageButton
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/maps"
         android:onClick="handleMapButton"
-        android:layout_marginTop="@dimen/activity_vertical_margin" />
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:contentDescription="@string/activity_main_mapsicon_content_description" />
 
 </LinearLayout>

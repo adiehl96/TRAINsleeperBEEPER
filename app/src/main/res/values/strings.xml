@@ -12,4 +12,6 @@
     <string name="no_location_toast">Location permission is required.</string>
     <string name="activity_maps_default_location_name">Google Maps Location</string>
     <string name="not_a_station_toast">%s is not a station.</string>
+    <string name="activity_main_trainicon_content_description">Train</string>
+    <string name="activity_main_mapsicon_content_description">Maps</string>
 </resources>
