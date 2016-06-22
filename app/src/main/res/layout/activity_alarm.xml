@@ -23,7 +23,7 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vibration"
+        android:text="@string/activity_alarm_vibration_switch_text"
         android:id="@+id/switchVibration"
         android:switchPadding="@dimen/abc_button_padding_horizontal_material"
         android:checked="true"
@@ -32,7 +32,7 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ringtone"
+        android:text="@string/activity_alarm_ringtone_switch_text"
         android:id="@+id/switchRingtone"
         android:switchPadding="@dimen/abc_button_padding_horizontal_material"
         android:checked="true"
@@ -41,7 +41,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel Alarm"
+        android:text="@android:string/cancel"
         android:onClick="cancelAlarm" />
 
 </LinearLayout>

@@ -14,4 +14,6 @@
     <string name="not_a_station_toast">%s is not a station.</string>
     <string name="activity_main_trainicon_content_description">Train</string>
     <string name="activity_main_mapsicon_content_description">Maps</string>
+    <string name="activity_alarm_vibration_switch_text">Vibration</string>
+    <string name="activity_alarm_ringtone_switch_text">Ringtone</string>
 </resources>
