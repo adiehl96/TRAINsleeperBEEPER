@@ -57,9 +57,7 @@ public class NsApiParser implements NamedLocationProvider {
     private static Document getDocument(URLConnection connection) {
         try {
             return new UrlBackgroundTask().execute(connection).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return null;
